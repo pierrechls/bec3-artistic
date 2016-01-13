@@ -12,7 +12,7 @@ Project realised in IMAC Engineering School
 
 #### Clone the project
 
-	git clone git@github.com:PierreChls/iSeason.git
+	git clone https://github.com/PierreChls/Bec3Artistic.git
 	
 #### Build
 
