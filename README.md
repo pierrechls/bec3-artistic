@@ -1,12 +1,6 @@
-# iSeason
+# Bec3 - Artistic Installation
 
-Project realised in IMAC Engineering School, in November and December 2015
-
-**Collaborators :**
-
-- [Pierre CHARLES](https://github.com/PierreChls)
-- [Charlie DARRAUD](https://github.com/charliesrc)
-- [Romain FRANÇOIS](https://github.com/Arctic76)
+Project realised in IMAC Engineering School
 
 **Supported OS (require OpenGL 3+)**
 
@@ -16,25 +10,19 @@ Project realised in IMAC Engineering School, in November and December 2015
 
 ## How to use it
 
-#### Download the models
-	
-[Download Files](https://drive.google.com/folderview?id=0B9RhOR0UbDtoR2VzZ19QMUY4WUU&usp=sharing)
-
-put them in iSeason/project/assets/models/
-
 #### Clone the project
 
 	git clone git@github.com:PierreChls/iSeason.git
 	
 #### Build
 
-	cd iSeason/build
+	cd Bec3Artistic/build
 	cmake ../project
 	make
 	
 #### Run
 
-	./template/game
+	./template/artistic
 
 ##Prior installation
 
@@ -74,12 +62,6 @@ Mac OSX :
 
     $ brew install sdl2
 
-####SDL2 MIXER
+####FMOD
 
-Linux :
-
-    $ sudo apt-get install libsdl2-mixer-dev
-
-Mac OSX :
-
-    $ brew install sdl2_mixer
+- [Download FMOD Ex API](http://www.fmod.org/browse-fmod-ex-api/)
