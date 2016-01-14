@@ -19,6 +19,12 @@ class Form{
 public:
 
 	Shader shader;
+
+	Form();
+	void draw(SDLWindowManager* windowManager, float screenWidth, float screenHeight, float frequence);
+
+private:
+
 	std::unique_ptr<Image> HUDtexture;
 	map<string, std::unique_ptr<Image>> HUDtextures;
 
@@ -26,10 +32,5 @@ public:
 	GLuint Textures;
 	GLfloat vertices[32];
 	GLuint indices[6];
-
-	Form();
-	void draw(SDLWindowManager* windowManager, float screenWidth, float screenHeight, float frequence);
-
-private:
 
 };
