@@ -27,9 +27,9 @@ class Sound
     public:
 
       Sound();
-      void update();
-      void stop();
-      void Event(string touch);
+      void  update();
+      void  stop();
+      void  Event(string touch);
       float getFrequency();
 
     private:
@@ -43,7 +43,7 @@ class Sound
       int                 count;
       unsigned int        version;
 
-      float spectre[ TAILLE_SPECTRE ];
+      float               spectre[ TAILLE_SPECTRE ];
 
       void ERRCHECK(FMOD_RESULT result);
 

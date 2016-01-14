@@ -25,12 +25,12 @@ public:
 
 private:
 
-	std::unique_ptr<Image> HUDtexture;
+	std::unique_ptr<Image>              HUDtexture;
 	map<string, std::unique_ptr<Image>> HUDtextures;
 
-	GLuint VBO, VAO, EBO;
-	GLuint Textures;
+	GLuint  VBO, VAO, EBO;
+	GLuint  Textures;
 	GLfloat vertices[32];
-	GLuint indices[6];
+	GLuint  indices[6];
 
 };

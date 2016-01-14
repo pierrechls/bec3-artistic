@@ -26,7 +26,7 @@ class Engine
     
     private:
       Sound _Sound;
-      Form _Form;
+      Form  _Form;
       float frequency;
 
       void Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
