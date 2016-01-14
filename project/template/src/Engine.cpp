@@ -23,92 +23,92 @@ Engine::Engine()
   }
 
   result = system->init(32, FMOD_INIT_NORMAL, 0);
-    ERRCHECK(result);
+  ERRCHECK(result);
 
-    result = system->createSound("assets/sounds/drumloop.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[0]);
-    ERRCHECK(result);
-    result = system->createSound("assets/sounds/jaguar.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[1]);
-    ERRCHECK(result);
-    result = system->createSound("assets/sounds/c.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[2]);
-    ERRCHECK(result);
-    result = system->createSound("assets/sounds/d.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[3]);
-    ERRCHECK(result);
-    result = system->createSound("assets/sounds/e.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[4]);
-    ERRCHECK(result);
+  result = system->createSound("assets/sounds/drumloop.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[0]);
+  ERRCHECK(result);
+  result = system->createSound("assets/sounds/jaguar.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[1]);
+  ERRCHECK(result);
+  result = system->createSound("assets/sounds/c.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[2]);
+  ERRCHECK(result);
+  result = system->createSound("assets/sounds/d.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[3]);
+  ERRCHECK(result);
+  result = system->createSound("assets/sounds/e.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[4]);
+  ERRCHECK(result);
 
-    result = system->createChannelGroup("Group A", &groupA);
-    ERRCHECK(result);
+  result = system->createChannelGroup("Group A", &groupA);
+  ERRCHECK(result);
 
-    result = system->createChannelGroup("Group B", &groupB);
-    ERRCHECK(result);
+  result = system->createChannelGroup("Group B", &groupB);
+  ERRCHECK(result);
 
-    result = system->getMasterChannelGroup(&masterGroup);
-    ERRCHECK(result);
+  result = system->getMasterChannelGroup(&masterGroup);
+  ERRCHECK(result);
 
-    result = masterGroup->addGroup(groupA);
-    ERRCHECK(result);
+  result = masterGroup->addGroup(groupA);
+  ERRCHECK(result);
 
-    result = masterGroup->addGroup(groupB);
-    ERRCHECK(result);
+  result = masterGroup->addGroup(groupB);
+  ERRCHECK(result);
 
-    cout << "                                                       (drumloop.wav)" << endl;
-    cout << "                                                      /              " << endl;
-    cout << "                                              (groupA)               " << endl;
-    cout << "                                     (reverb)/        \\             " << endl;
-    cout << "                                    /                  (jaguar.wav)  " << endl;
-    cout << "(soundcard)--(lowpass)--(mastergroup)                                " << endl;
-    cout << "                                    \\                  (c.ogg)      " << endl;
-    cout << "                                     (flange)         /              " << endl;
-    cout << "                                             \\(groupB)--(d.ogg)     " << endl;
-    cout << "                                                      \\             " << endl;
-    cout << "                                                       (e.ogg)       " << endl;
-    cout << "Press 'A' to mute/unmute group A" << endl;
-    cout << "Press 'B' to mute/unmute group B" << endl;
-    cout << " " << endl;
-    cout << "Press 'R' to place reverb on group A" << endl;
-    cout << "Press 'F' to place flange on group B" << endl;
-    cout << "Press 'L' to place lowpass on master group (everything)" << endl;
-    cout << "Press 'Esc' to quit" << endl;
-    cout << "" << endl;
+  cout << "                                                       (drumloop.wav)" << endl;
+  cout << "                                                      /              " << endl;
+  cout << "                                              (groupA)               " << endl;
+  cout << "                                     (reverb)/        \\             " << endl;
+  cout << "                                    /                  (jaguar.wav)  " << endl;
+  cout << "(soundcard)--(lowpass)--(mastergroup)                                " << endl;
+  cout << "                                    \\                  (c.ogg)      " << endl;
+  cout << "                                     (flange)         /              " << endl;
+  cout << "                                             \\(groupB)--(d.ogg)     " << endl;
+  cout << "                                                      \\             " << endl;
+  cout << "                                                       (e.ogg)       " << endl;
+  cout << "Press 'A' to mute/unmute group A" << endl;
+  cout << "Press 'B' to mute/unmute group B" << endl;
+  cout << " " << endl;
+  cout << "Press 'R' to place reverb on group A" << endl;
+  cout << "Press 'F' to place flange on group B" << endl;
+  cout << "Press 'L' to place lowpass on master group (everything)" << endl;
+  cout << "Press 'Esc' to quit" << endl;
+  cout << "" << endl;
 
   
-    ///////////////////////////
-    /* Start all the sounds! */
-    ///////////////////////////
+  ///////////////////////////
+  /* Start all the sounds! */
+  ///////////////////////////
 
-    for (count = 0; count < 5; count++)
+  for (count = 0; count < 5; count++)
+  {
+    result = system->playSound(FMOD_CHANNEL_FREE, sound[count], true, &channel[count]);
+    ERRCHECK(result);
+    if (count < 2)
     {
-        result = system->playSound(FMOD_CHANNEL_FREE, sound[count], true, &channel[count]);
-        ERRCHECK(result);
-        if (count < 2)
-        {
-            result = channel[count]->setChannelGroup(groupA);
-        }
-        else
-        {
-            result = channel[count]->setChannelGroup(groupB);
-        }
-        ERRCHECK(result);
-        result = channel[count]->setPaused(false);
-        ERRCHECK(result);
+      result = channel[count]->setChannelGroup(groupA);
     }
+    else
+    {
+      result = channel[count]->setChannelGroup(groupB);
+    }
+    ERRCHECK(result);
+    result = channel[count]->setPaused(false);
+    ERRCHECK(result);
+  }
 
-    /////////////////////////////////////////////////////////////
-    /* Create the DSP effects we want to apply to our submixes */
-    /////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////
+  /* Create the DSP effects we want to apply to our submixes */
+  /////////////////////////////////////////////////////////////
 
-    result = system->createDSPByType(FMOD_DSP_TYPE_SFXREVERB, &dspreverb);
-    ERRCHECK(result);
+  result = system->createDSPByType(FMOD_DSP_TYPE_SFXREVERB, &dspreverb);
+  ERRCHECK(result);
 
-    result = system->createDSPByType(FMOD_DSP_TYPE_FLANGE, &dspflange);
-    ERRCHECK(result);
-    result = dspflange->setParameter(FMOD_DSP_FLANGE_RATE, 1.0f);
-    ERRCHECK(result);
+  result = system->createDSPByType(FMOD_DSP_TYPE_FLANGE, &dspflange);
+  ERRCHECK(result);
+  result = dspflange->setParameter(FMOD_DSP_FLANGE_RATE, 1.0f);
+  ERRCHECK(result);
 
-    result = system->createDSPByType(FMOD_DSP_TYPE_LOWPASS, &dsplowpass);
-    ERRCHECK(result);
-    result = dsplowpass->setParameter(FMOD_DSP_LOWPASS_CUTOFF, 500.0f);
-    ERRCHECK(result);
+  result = system->createDSPByType(FMOD_DSP_TYPE_LOWPASS, &dsplowpass);
+  ERRCHECK(result);
+  result = dsplowpass->setParameter(FMOD_DSP_LOWPASS_CUTOFF, 500.0f);
+  ERRCHECK(result);
 
 }
 
@@ -116,21 +116,19 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
 {
   Event(windowManager, screenWidth, screenHeight, done);  
 
-        system->update();
+  system->update();
 
-        int  channelsplaying = 0;
+  int  channelsplaying = 0;
 
-        system->getChannelsPlaying(&channelsplaying);
+  system->getChannelsPlaying(&channelsplaying);
 
-        printf("Channels Playing %2d\r", channelsplaying);
+  fflush(stdout);
+  Sleep(10);
 
-        fflush(stdout);
-        Sleep(10);
+  glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        windowManager->swapBuffers();
+  windowManager->swapBuffers();
 }
 
 void stop()
