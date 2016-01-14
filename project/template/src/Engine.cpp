@@ -110,6 +110,9 @@ Engine::Engine()
   result = dsplowpass->setParameter(FMOD_DSP_LOWPASS_CUTOFF, 500.0f);
   ERRCHECK(result);
 
+
+
+
 }
 
 void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done)
@@ -122,11 +125,17 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
 
   system->getChannelsPlaying(&channelsplaying);
 
+  //On récupère les fréqunces du spectre
+  result = channel[1]->getSpectrum(spectre, TAILLE_SPECTRE, 0, FMOD_DSP_FFT_WINDOW_RECT);
+  ERRCHECK(result);
+
   fflush(stdout);
   Sleep(10);
 
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  _Form.draw(windowManager, screenWidth, screenHeight, spectre[258] );
 
   windowManager->swapBuffers();
 }

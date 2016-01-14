@@ -16,11 +16,13 @@
 #include <fmodex/fmod_dsp.h>
 #include <fmodex/fmod_errors.h>
 
-//#include "Shader.hpp"
-//#include "Sound.hpp"
+#include "Shader.hpp"
+#include "Form.hpp"
 
 using namespace std;
 using namespace glimac;
+
+#define TAILLE_SPECTRE 512
 
 
 class Engine
@@ -35,6 +37,11 @@ class Engine
       FMOD_RESULT         result;
       int                 key, count;
       unsigned int        version;
+
+      float spectre[ TAILLE_SPECTRE ];
+
+
+      Form _Form;
 
       Engine();
       void run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
