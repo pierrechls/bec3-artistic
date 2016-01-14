@@ -43,6 +43,7 @@ class Engine
       Engine();
       void run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
       void stop();
+      void Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
       void ERRCHECK(FMOD_RESULT result);
     private:
 
