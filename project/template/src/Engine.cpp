@@ -3,10 +3,7 @@
 using namespace std;
 using namespace glimac;
 
-Engine::Engine()
-{
-
-}
+Engine::Engine(){}
 
 void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done)
 {
@@ -26,7 +23,8 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  _Form.draw(windowManager, screenWidth, screenHeight, frequency );
+  _Form.draw(frequency);
+  _Form.drawCircle();
 
   windowManager->swapBuffers();
 }
@@ -79,4 +77,9 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
       break;
     }
   }
+}
+
+void Engine::stop()
+{
+  _Sound.stop();
 }

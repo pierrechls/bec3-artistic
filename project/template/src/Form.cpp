@@ -4,7 +4,9 @@
 
 Form::Form(){
 
-	this->shader = Shader("template/shaders/Form.vs.glsl", "template/shaders/Form.fs.glsl");
+	this->shaderColor   = Shader("template/shaders/FormColor.vs.glsl", "template/shaders/FormColor.fs.glsl");
+    this->shaderTexture = Shader("template/shaders/FormTexture.vs.glsl", "template/shaders/FormTexture.fs.glsl");
+
 
     GLfloat NewVertices[] = {
         // Positions          // Colors           // Texture Coords
@@ -31,6 +33,8 @@ Form::Form(){
     
     glGenVertexArrays(1, &this->VAO);
     glGenBuffers(1, &this->VBO);
+
+
     glGenBuffers(1, &this->EBO);
 
     glBindVertexArray(this->VAO);
@@ -53,6 +57,9 @@ Form::Form(){
 
     glBindVertexArray(0); // Unbind VAO
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     // Load and create a texture
     glGenTextures(1, &this->Textures);
     glBindTexture(GL_TEXTURE_2D, this->Textures); // All upcoming GL_TEXTURE_2D operations now have effect on this texture object
@@ -61,7 +68,7 @@ Form::Form(){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     //Load texture HUD
-    this->HUDtextures["BG"] = loadImage("assets/textures/white.jpg");
+    this->HUDtextures["BG"] = loadImage("assets/textures/white_circle.png");
     if (this->HUDtextures["BG"] == NULL) std::cout << "Texture HUD non chargé" << std::endl;
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this->HUDtextures["BG"]->getWidth(),this->HUDtextures["BG"]->getHeight(), 0, GL_RGBA, GL_FLOAT, this->HUDtextures["BG"]->getPixels());
     glGenerateMipmap(GL_TEXTURE_2D);
@@ -69,18 +76,14 @@ Form::Form(){
 }
 
 
-void Form::draw(SDLWindowManager* windowManager, float screenWidth, float screenHeight, float frequence)
+void Form::draw(float frequence)
 {
-	
-	glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	// Bind Texture
     glBindTexture(GL_TEXTURE_2D, this->Textures);
     
-    this->shader.Use();
+    this->shaderColor.Use();
 
-    GLuint transformLoc = glGetUniformLocation(this->shader.Program, "transform");
+    GLuint transformLoc = glGetUniformLocation(this->shaderColor.Program, "transform");
     
     glm::mat4 trans;
     //trans = glm::rotate(trans, 90.0f, glm::vec3(0.0, 0.0, 1.0));
@@ -92,6 +95,24 @@ void Form::draw(SDLWindowManager* windowManager, float screenWidth, float screen
     glBindVertexArray(this->VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+}
 
-	windowManager->swapBuffers();
+void Form::drawCircle()
+{
+    // Bind Texture
+    glBindTexture(GL_TEXTURE_2D, this->Textures);
+    
+    this->shaderTexture.Use();
+
+    GLuint transformLoc = glGetUniformLocation(this->shaderTexture.Program, "transform");
+    
+    glm::mat4 trans;
+    trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));  
+
+    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+
+    // Draw container
+    glBindVertexArray(this->VAO);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 }

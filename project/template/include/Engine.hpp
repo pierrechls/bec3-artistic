@@ -23,7 +23,8 @@ class Engine
 
       Engine();
       void run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
-    
+      void stop();
+      
     private:
       Sound _Sound;
       Form  _Form;

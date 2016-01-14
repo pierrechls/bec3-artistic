@@ -18,11 +18,12 @@ class Form{
 
 public:
 
-	Shader shader;
+	Shader shaderColor;
+	Shader shaderTexture;
 
 	Form();
-	void draw(SDLWindowManager* windowManager, float screenWidth, float screenHeight, float frequence);
-
+	void draw(float frequence);
+	void drawCircle();
 private:
 
 	std::unique_ptr<Image>              HUDtexture;

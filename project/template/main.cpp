@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
         Artistic.run(&windowManager, screenWidth, screenHeight, &done);
     }
 
-    //Artistic.stop();
+    Artistic.stop();
 
     return 0;
 }
