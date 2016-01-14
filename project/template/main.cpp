@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     
     // Initialize SDL and open a window
     GLuint screenWidth = 800, screenHeight = 600;
-    SDLWindowManager windowManager(screenWidth, screenHeight, "iSeason");
+    SDLWindowManager windowManager(screenWidth, screenHeight, "Bec3 Artistic");
 
     // Initialize glew for OpenGL3+ support
     glewExperimental = GL_TRUE;

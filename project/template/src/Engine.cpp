@@ -5,18 +5,12 @@ using namespace glimac;
 
 Engine::Engine()
 {
-  this->system        = 0;
-  this->sound         = 0;
-  this->channel       = 0;
-  this->dsplowpass    = 0;
-  this->dsphighpass   = 0;
-  this->dspecho       = 0;
-  this->dspflange     = 0;
-  this->dspdistortion = 0;
-  this->dspchorus     = 0;
-  this->dspparameq    = 0;
+  
+  ///////////////////////////////////////////
+  /* Create a System object and initialize */
+  ///////////////////////////////////////////
 
-  this->result = FMOD::System_Create(&system);
+  result = FMOD::System_Create(&system);
   ERRCHECK(result);
 
   result = system->getVersion(&version);
@@ -24,47 +18,97 @@ Engine::Engine()
 
   if (version < FMOD_VERSION)
   {
-    cout << "Error!  You are using an old version of FMOD" << version << ". This program requires " << FMOD_VERSION << endl;
-    exit(-1);
+      cout << "Error!  You are using an old version of FMOD " << version << ". This program requires " << FMOD_VERSION << endl;
+      exit(1);
   }
 
   result = system->init(32, FMOD_INIT_NORMAL, 0);
-  ERRCHECK(result);
+    ERRCHECK(result);
 
-  result = system->createSound("assets/sounds/drumloop.wav", FMOD_SOFTWARE, 0, &sound);
-  ERRCHECK(result);
+    result = system->createSound("assets/sounds/drumloop.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[0]);
+    ERRCHECK(result);
+    result = system->createSound("assets/sounds/jaguar.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[1]);
+    ERRCHECK(result);
+    result = system->createSound("assets/sounds/c.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[2]);
+    ERRCHECK(result);
+    result = system->createSound("assets/sounds/d.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[3]);
+    ERRCHECK(result);
+    result = system->createSound("assets/sounds/e.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[4]);
+    ERRCHECK(result);
 
-  cout << "Press SPACE to paused/unpause sound." << endl;
-  cout << "Press a to toggle dsplowpass effect." << endl;
-  cout << "Press z to toggle dsphighpass effect" << endl;
-  cout << "Press e to toggle dspecho effect." << endl;
-  cout << "Press r to toggle dspflange effect." << endl;
-  cout << "Press t to toggle dspdistortion effect." << endl;
-  cout << "Press y to toggle dspchorus effect." << endl;
-  cout << "Press u to toggle dspparameq effect." << endl;
-  cout << "Press 'Esc' to quit" << endl;
+    result = system->createChannelGroup("Group A", &groupA);
+    ERRCHECK(result);
 
-  result = system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
-  ERRCHECK(result);
+    result = system->createChannelGroup("Group B", &groupB);
+    ERRCHECK(result);
 
-  ////////////////////////////////////////
-  //  Create some effects to play with  //
-  ////////////////////////////////////////
+    result = system->getMasterChannelGroup(&masterGroup);
+    ERRCHECK(result);
 
-  result = system->createDSPByType(FMOD_DSP_TYPE_LOWPASS, &dsplowpass);
-  ERRCHECK(result);
-  result = system->createDSPByType(FMOD_DSP_TYPE_HIGHPASS, &dsphighpass);
-  ERRCHECK(result);
-  result = system->createDSPByType(FMOD_DSP_TYPE_ECHO, &dspecho);
-  ERRCHECK(result);
-  result = system->createDSPByType(FMOD_DSP_TYPE_FLANGE, &dspflange);
-  ERRCHECK(result);
-  result = system->createDSPByType(FMOD_DSP_TYPE_DISTORTION, &dspdistortion);
-  ERRCHECK(result);
-  result = system->createDSPByType(FMOD_DSP_TYPE_CHORUS, &dspchorus);
-  ERRCHECK(result);
-  result = system->createDSPByType(FMOD_DSP_TYPE_PARAMEQ, &dspparameq);
-  ERRCHECK(result);
+    result = masterGroup->addGroup(groupA);
+    ERRCHECK(result);
+
+    result = masterGroup->addGroup(groupB);
+    ERRCHECK(result);
+
+    cout << "                                                       (drumloop.wav)" << endl;
+    cout << "                                                      /              " << endl;
+    cout << "                                              (groupA)               " << endl;
+    cout << "                                     (reverb)/        \\             " << endl;
+    cout << "                                    /                  (jaguar.wav)  " << endl;
+    cout << "(soundcard)--(lowpass)--(mastergroup)                                " << endl;
+    cout << "                                    \\                  (c.ogg)      " << endl;
+    cout << "                                     (flange)         /              " << endl;
+    cout << "                                             \\(groupB)--(d.ogg)     " << endl;
+    cout << "                                                      \\             " << endl;
+    cout << "                                                       (e.ogg)       " << endl;
+    cout << "Press 'A' to mute/unmute group A" << endl;
+    cout << "Press 'B' to mute/unmute group B" << endl;
+    cout << " " << endl;
+    cout << "Press 'R' to place reverb on group A" << endl;
+    cout << "Press 'F' to place flange on group B" << endl;
+    cout << "Press 'L' to place lowpass on master group (everything)" << endl;
+    cout << "Press 'Esc' to quit" << endl;
+    cout << "" << endl;
+
+  
+    ///////////////////////////
+    /* Start all the sounds! */
+    ///////////////////////////
+
+    for (count = 0; count < 5; count++)
+    {
+        result = system->playSound(FMOD_CHANNEL_FREE, sound[count], true, &channel[count]);
+        ERRCHECK(result);
+        if (count < 2)
+        {
+            result = channel[count]->setChannelGroup(groupA);
+        }
+        else
+        {
+            result = channel[count]->setChannelGroup(groupB);
+        }
+        ERRCHECK(result);
+        result = channel[count]->setPaused(false);
+        ERRCHECK(result);
+    }
+
+    /////////////////////////////////////////////////////////////
+    /* Create the DSP effects we want to apply to our submixes */
+    /////////////////////////////////////////////////////////////
+
+    result = system->createDSPByType(FMOD_DSP_TYPE_SFXREVERB, &dspreverb);
+    ERRCHECK(result);
+
+    result = system->createDSPByType(FMOD_DSP_TYPE_FLANGE, &dspflange);
+    ERRCHECK(result);
+    result = dspflange->setParameter(FMOD_DSP_FLANGE_RATE, 1.0f);
+    ERRCHECK(result);
+
+    result = system->createDSPByType(FMOD_DSP_TYPE_LOWPASS, &dsplowpass);
+    ERRCHECK(result);
+    result = dsplowpass->setParameter(FMOD_DSP_LOWPASS_CUTOFF, 500.0f);
+    ERRCHECK(result);
 
 }
 
@@ -74,41 +118,14 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
 
         system->update();
 
-        bool paused = 0;
-        bool dsplowpass_active;
-        bool dsphighpass_active;
-        bool dspecho_active;
-        bool dspflange_active;
-        bool dspdistortion_active;
-        bool dspchorus_active;
-        bool dspparameq_active;
+        int  channelsplaying = 0;
 
-        dsplowpass   ->getActive(&dsplowpass_active);
-        dsphighpass  ->getActive(&dsphighpass_active);
-        dspecho      ->getActive(&dspecho_active);
-        dspflange    ->getActive(&dspflange_active);
-        dspdistortion->getActive(&dspdistortion_active);
-        dspchorus    ->getActive(&dspchorus_active);
-        dspparameq   ->getActive(&dspparameq_active);
+        system->getChannelsPlaying(&channelsplaying);
 
-        if (channel)
-        {
-            result = channel->getPaused(&paused);
-            if ((result != FMOD_OK) && (result != FMOD_ERR_INVALID_HANDLE) && (result != FMOD_ERR_CHANNEL_STOLEN))
-            {
-                ERRCHECK(result);
-            }
-        }
+        printf("Channels Playing %2d\r", channelsplaying);
 
-        /*cout << (paused               ? "Paused" : "Playing") 
-             << (dsplowpass_active    ? "x" : " ")
-             << (dsphighpass_active   ? "x" : " ")
-             << (dspecho_active       ? "x" : " ")
-             << (dspflange_active     ? "x" : " ")
-             << (dspdistortion_active ? "x" : " ")
-             << (dspchorus_active     ? "x" : " ")
-             << (dspparameq_active    ? "x" : " ")
-        << endl;*/
+        fflush(stdout);
+        Sleep(10);
 
         glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -144,166 +161,68 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
           (*done) = true;
         }
 
-        //PLAY/PAUSE
-        if(windowManager->isKeyPressed(SDLK_SPACE))
-        {
-          bool paused;
-
-          channel->getPaused(&paused);
-          ERRCHECK(result);
-
-          paused = !paused;
-
-          result = channel->setPaused(paused);
-          ERRCHECK(result);
-        }
-
         //LOWPASS
         if(windowManager->isKeyPressed(SDLK_a))
         {
-          bool active;
+          static bool mute = true;
+          groupA->setMute(mute);
+          mute = !mute;
+        }
 
-          result = dsplowpass->getActive(&active);
-          ERRCHECK(result);
+        //HIGHPASS
+        if(windowManager->isKeyPressed(SDLK_b))
+        {
+          static bool mute = true;
+          groupB->setMute(mute);
+          mute = !mute;
+        }
 
-          if (active)
+        //ECHO
+        if(windowManager->isKeyPressed(SDLK_r))
+        {
+          static bool reverb = true;
+          
+          if (reverb)
           {
-              result = dsplowpass->remove();
-              ERRCHECK(result);
+            groupA->addDSP(dspreverb, 0);
           }
           else
-            {
-                result = system->addDSP(dsplowpass, 0);
-                ERRCHECK(result);
-            }
-          }
-
-          //HIGHPASS
-          if(windowManager->isKeyPressed(SDLK_z))
           {
-            bool active;
-
-            result = dsphighpass->getActive(&active);
-            ERRCHECK(result);
-
-            if (active)
-            {
-                result = dsphighpass->remove();
-                ERRCHECK(result);
-            }
-            else
-            {
-                result = system->addDSP(dsphighpass, 0);
-                ERRCHECK(result);
-            }
+            dspreverb->remove();
           }
 
-          //ECHO
-          if(windowManager->isKeyPressed(SDLK_e))
+          reverb = !reverb;
+        }
+
+        if(windowManager->isKeyPressed(SDLK_f))
+        {
+          static bool flange = true;
+          if (flange)
           {
-            bool active;
-
-            result = dspecho->getActive(&active);
-            ERRCHECK(result);
-
-            if (active)
-            {
-                result = dspecho->remove();
-                ERRCHECK(result);
-            }
-            else
-            {
-                result = system->addDSP(dspecho, 0);
-                ERRCHECK(result);
-
-                result = dspecho->setParameter(FMOD_DSP_ECHO_DELAY, 50.0f);
-                ERRCHECK(result);
-            }
+            groupB->addDSP(dspflange, 0);
           }
-
-          if(windowManager->isKeyPressed(SDLK_r))
+          else
           {
-            bool active;
-
-            result = dspflange->getActive(&active);
-            ERRCHECK(result);
-
-            if (active)
-            {
-                result = dspflange->remove();
-                ERRCHECK(result);
-            }
-            else
-            {
-                result = system->addDSP(dspflange, 0);
-                ERRCHECK(result);
-            }
+            dspflange->remove();
           }
 
-          if(windowManager->isKeyPressed(SDLK_t))
+          flange = !flange;
+        }
+
+        if(windowManager->isKeyPressed(SDLK_l))
+        {
+          static bool lowpass = true;
+          if (lowpass)
           {
-            bool active;
-
-            result = dspdistortion->getActive(&active);
-            ERRCHECK(result);
-
-            if (active)
-            {
-                result = dspdistortion->remove();
-                ERRCHECK(result);
-            }
-            else
-            {
-                result = system->addDSP(dspdistortion, 0);
-                ERRCHECK(result);
-
-                result = dspdistortion->setParameter(FMOD_DSP_DISTORTION_LEVEL, 0.8f);
-                ERRCHECK(result);
-            }
+            masterGroup->addDSP(dsplowpass, 0);
           }
-
-          if(windowManager->isKeyPressed(SDLK_y))
-              {
-            bool active;
-
-            result = dspchorus->getActive(&active);
-            ERRCHECK(result);
-
-            if (active)
-            {
-                result = dspchorus->remove();
-                ERRCHECK(result);
-            }
-            else
-            {
-                result = system->addDSP(dspchorus, 0);
-                ERRCHECK(result);
-            }
-          }
-
-          if(windowManager->isKeyPressed(SDLK_u))
+          else
           {
-            bool active;
-
-            result = dspparameq->getActive(&active);
-            ERRCHECK(result);
-
-            if (active)
-            {
-                result = dspparameq->remove();
-                ERRCHECK(result);
-            }
-            else
-            {
-                result = system->addDSP(dspparameq, 0);
-                ERRCHECK(result);
-
-                result = dspparameq->setParameter(FMOD_DSP_PARAMEQ_CENTER, 5000.0f);
-                ERRCHECK(result);
-                result = dspparameq->setParameter(FMOD_DSP_PARAMEQ_GAIN, 0.0f);
-                ERRCHECK(result);
-            }
+            dsplowpass->remove();
           }
+
+          lowpass = !lowpass;
+        }
       break;
     }
   }

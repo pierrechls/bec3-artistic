@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(iSeason)
+project(Bec3Artistic)
 
 add_definitions(-std=c++11)
 

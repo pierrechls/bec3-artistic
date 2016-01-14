@@ -27,18 +27,14 @@ class Engine
 {
     public:
 
-      FMOD::System     *system;
-      FMOD::Sound      *sound;
-      FMOD::Channel    *channel;
-      FMOD::DSP        *dsplowpass;
-      FMOD::DSP        *dsphighpass;
-      FMOD::DSP        *dspecho;
-      FMOD::DSP        *dspflange;
-      FMOD::DSP        *dspdistortion;
-      FMOD::DSP        *dspchorus;
-      FMOD::DSP        *dspparameq;
-      FMOD_RESULT       result;
-      unsigned int      version;
+      FMOD::System       *system;
+      FMOD::Sound        *sound[5];
+      FMOD::Channel      *channel[5];
+      FMOD::ChannelGroup *groupA, *groupB, *masterGroup;
+      FMOD::DSP          *dspreverb, *dspflange, *dsplowpass;
+      FMOD_RESULT         result;
+      int                 key, count;
+      unsigned int        version;
 
       Engine();
       void run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
