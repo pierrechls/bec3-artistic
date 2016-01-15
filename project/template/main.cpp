@@ -9,23 +9,9 @@
 using namespace std;
 using namespace glimac;
 
-#include <string>
-
-#include "curl_easy.h"
-#include "curl_pair.h"
-#include "curl_form.h"
-#include "curl_exception.h"
-
 #include "restclient-cpp/restclient.h"
 
 using std::string;
-
-using curl::curl_form;
-using curl::curl_easy;
-using curl::curl_pair;
-using curl::curl_header;
-using curl::curl_easy_exception;
-using curl::curlcpp_traceback;
 
 int main(int argc, const char **argv) {
 	RestClient::headermap headers;
@@ -59,10 +45,8 @@ int main(int argc, const char **argv) {
 	RestClient::response r = RestClient::get("http://url.com", headers);
 	RestClient::response r = RestClient::post("http://url.com/post", "text/json", "{\"foo\": \"bla\"}", headers);
 	RestClient::response r = RestClient::put("http://url.com/put", "text/json", "{\"foo\": \"bla\"}", headers);
-	RestClient::response r = RestClient::del("http://url.com/delete", headers);
+	RestClient::response r = RestClient::del("http://url.com/delete", headers);*/
 
-	RestClient::setAuth("WarMachine68", "WARMACHINEROX");
-	curl_pair<CURLformoption,string> name_cont(CURLFORM_COPYCONTENTS,"{\"username\":\"corentin.limoge\",\"password\":\"coucou\",\"service\":\"im.bec3.com\",\"resource\":\"REST\"}");*/
     return 0;
 }
 

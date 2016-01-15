@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(coucou)
+project(BeC3)
 
 add_definitions(-std=c++11)
 
@@ -17,8 +17,8 @@ if(SDL2_FOUND)
 	find_package(GLEW REQUIRED)
 	find_package(FMOD REQUIRED)
 	find_package(CURL REQUIRED)
-	include_directories(${SDL2_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${FMOD_INCLUDE_DIR} ${CURLCPP_SOURCE_DIR}/include third-party/glimac/include/ third-party/glm/ third-party/curlcpp/include third-party/restclient/include)
-	set(ALL_LIBRARIES glimac curlcpp restclient ${SDL2_LIBRARY} ${SDLMIXER_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY} ${FMOD_LIBRARY} ${CURL_LIBRARY})
+	include_directories(${SDL2_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${FMOD_INCLUDE_DIR} ${CURLCPP_SOURCE_DIR}/include third-party/glimac/include/ third-party/glm/ third-party/restclient/include)
+	set(ALL_LIBRARIES glimac restclient ${SDL2_LIBRARY} ${SDLMIXER_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY} ${FMOD_LIBRARY} ${CURL_LIBRARY})
 else()
 	find_package(SDL)
 	MESSAGE('SDL2 NOT FOUND ; LOADING SDL1.2')
@@ -26,8 +26,8 @@ else()
 	find_package(GLEW REQUIRED)
 	find_package(FMOD REQUIRED)
 	find_package(CURL REQUIRED)
-	include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${FMOD_INCLUDE_DIR} ${CURLCPP_SOURCE_DIR}/include third-party/glimac/include/ third-party/glm/ third-party/curlcpp/)
-	set(ALL_LIBRARIES glimac ${SDL_LIBRARY} ${SDLMIXER_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY} ${FMOD_LIBRARY} ${CURL_LIBRARY})
+	include_directories(${SDL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${FMOD_INCLUDE_DIR} ${CURLCPP_SOURCE_DIR}/include third-party/glimac/include/ third-party/glm/)
+	set(ALL_LIBRARIES glimac restclient ${SDL_LIBRARY} ${SDLMIXER_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY} ${FMOD_LIBRARY} ${CURL_LIBRARY})
 endif()
 
 # Pour gérer un bug a la fac, a supprimer sur machine perso:
