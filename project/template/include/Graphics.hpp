@@ -26,6 +26,9 @@ public:
 	void Event(string touch);
 
 private:
+
+	bool groupA, groupB, groupC, groupD, groupE;
+
 	float frequenciesChannel[ NOMBRE_CHANNEL ];
 	void setfrequenciesChannel(float* newFrequenciesChannel);
 	Form _Form;

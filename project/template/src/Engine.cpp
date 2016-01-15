@@ -53,36 +53,42 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
         if(windowManager->isKeyPressed(SDLK_a))
         {
           _Sound.Event("a");
+          _Graphics.Event("a");
         }
 
         //HIGHPASS
         if(windowManager->isKeyPressed(SDLK_b))
         {
           _Sound.Event("b");
+          _Graphics.Event("b");
         }
 
         //LOWPASS
         if(windowManager->isKeyPressed(SDLK_c))
         {
           _Sound.Event("c");
+          _Graphics.Event("c");
         }
 
         //HIGHPASS
         if(windowManager->isKeyPressed(SDLK_d))
         {
           _Sound.Event("d");
+          _Graphics.Event("d");
         }
 
         //LOWPASS
         if(windowManager->isKeyPressed(SDLK_e))
         {
           _Sound.Event("e");
+          _Graphics.Event("e");
         }
 
         //HIGHPASS
         if(windowManager->isKeyPressed(SDLK_b))
         {
           _Sound.Event("b");
+          _Graphics.Event("e");
         }
 
         //ECHO

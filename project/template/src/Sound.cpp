@@ -209,7 +209,7 @@ void Sound::Event(string touch)
 
   if( touch == "a" )
   {
-    static bool mute = true;
+    static bool mute = false;
     groupA->setMute(mute);
     mute = !mute;
   }
@@ -223,21 +223,21 @@ void Sound::Event(string touch)
 
   if( touch == "c" )
   {
-    static bool mute = true;
+    static bool mute = false;
     groupC->setMute(mute);
     mute = !mute;
   }
 
   if( touch == "d" )
   {
-    static bool mute = true;
+    static bool mute = false;
     groupD->setMute(mute);
     mute = !mute;
   }
 
   if( touch == "e" )
   {
-    static bool mute = true;
+    static bool mute = false;
     groupE->setMute(mute);
     mute = !mute;
   }
