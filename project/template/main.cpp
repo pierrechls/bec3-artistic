@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <iostream>
 #include <curl/curl.h>
+#include <list>
 
 #include "Engine.hpp"
 
@@ -28,12 +29,24 @@ using curl::curlcpp_traceback;
 
 int main(int argc, const char **argv) {
 	RestClient::headermap headers;
-	headers["Content-Type"] = "application/json";
-	RestClient::response connect = RestClient::post("http://localhost:9000/login", "text/json", "{\"username\":\"corentin.limoge\",\"password\":\"coucou\",\"service\":\"im.bec3.com\",\"resource\":\"REST\"}", headers);
+	headers["Cookie"] = "PLAY_SESSION=1348ee1c612518e7097c41ea9e181db834e6123c-UID=corentin.limoge%2540im.bec3.com";
+	
+	RestClient::response connect = RestClient::post("http://localhost:9000/login", "text/json", "{\"username\":\"corentin.limoge\",\"password\":\"coucou\",\"service\":\"im.bec3.com\",\"resource\":\"REST\"}");
 	cout << connect.code << endl;
-	RestClient::response r = RestClient::get("http://localhost:9000/feature/LIGHT", connect.headers);
-	cout << r.code << endl;
-	cout << r.body << endl;
+	
+	for (auto iter = connect.headers.begin(); iter != connect.headers.end(); iter++)
+	{
+		cout << "Key: " << iter->first << endl << "Values:" << iter->second<< endl;
+	}
+	
+	/*RestClient::response button = RestClient::post("http://localhost:9000/feature", "text/json", "{\"id\":\"Button\",\"type\":\"button\"}", connect.headers, 1);
+	cout << button.code << endl;
+	cout << button.body << endl;*/
+	while(1){
+		RestClient::response light = RestClient::get("http://localhost:9000/feature/COUCOU", headers, 1);
+		cout << light.code << endl;
+		cout << light.body << endl;
+	}
 	/*RestClient::response r = RestClient::post("http://url.com/post", "text/json", "{\"foo\": \"bla\"}");
 	RestClient::response r = RestClient::put("http://url.com/put", "text/json", "{\"foo\": \"bla\"}");
 	RestClient::response r = RestClient::del("http://url.com/delete");
