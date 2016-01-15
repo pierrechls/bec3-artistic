@@ -11,7 +11,7 @@
 #include <iostream>
 #include <cstdio>
 
-#include "Form.hpp"
+#include "Graphics.hpp"
 #include "Sound.hpp"
 
 using namespace std;
@@ -26,8 +26,8 @@ class Engine
       void stop();
       
     private:
-      Sound _Sound;
-      Form  _Form;
+      Sound     _Sound;
+      Graphics  _Graphics;
       float frequency;
 
       void Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);

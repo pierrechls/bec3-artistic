@@ -12,4 +12,5 @@ void main()
 {
 	// Linearly interpolate between both textures (second texture is only slightly combined)
 	color = mix(texture(ourTexture1, TexCoord), texture(ourTexture2, TexCoord), 0.2);
+	//if (color.rgb == vec3(0.0,0.0,0.0)) discard; 
 }

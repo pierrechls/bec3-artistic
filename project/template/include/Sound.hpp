@@ -20,6 +20,8 @@ using namespace std;
 using namespace glimac;
 
 #define TAILLE_SPECTRE 512
+#define NOMBRE_SOUND   4
+#define NOMBRE_CHANNEL 4
 
 
 class Sound
@@ -35,8 +37,8 @@ class Sound
     private:
 
       FMOD::System       *system;
-      FMOD::Sound        *sound[5];
-      FMOD::Channel      *channel[5];
+      FMOD::Sound        *sound[NOMBRE_SOUND];
+      FMOD::Channel      *channel[NOMBRE_CHANNEL];
       FMOD::ChannelGroup *groupA, *groupB, *masterGroup;
       FMOD::DSP          *dspreverb, *dspflange, *dsplowpass;
       FMOD_RESULT         result;

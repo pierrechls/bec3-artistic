@@ -25,15 +25,15 @@ Sound::Sound()
   result = system->init(32, FMOD_INIT_NORMAL, 0);
   ERRCHECK(result);
 
-  result = system->createSound("assets/sounds/drumloop.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[0]);
+  result = system->createSound("assets/sounds/BeatLoopA.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[0]);
   ERRCHECK(result);
-  result = system->createSound("assets/sounds/jaguar.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[1]);
+  result = system->createSound("assets/sounds/SineDroppaE.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[1]);
   ERRCHECK(result);
-  result = system->createSound("assets/sounds/c.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[2]);
+  //result = system->createSound("assets/sounds/swish.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[2]);
+  //ERRCHECK(result);
+  result = system->createSound("assets/sounds/BeatLoopD.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[2]);
   ERRCHECK(result);
-  result = system->createSound("assets/sounds/d.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[3]);
-  ERRCHECK(result);
-  result = system->createSound("assets/sounds/e.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[4]);
+  result = system->createSound("assets/sounds/WobbulousA.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[3]);
   ERRCHECK(result);
 
   result = system->createChannelGroup("Group A", &groupA);
@@ -76,7 +76,7 @@ Sound::Sound()
   /* Start all the sounds! */
   ///////////////////////////
 
-  for (count = 0; count < 5; count++)
+  for (count = 0; count < NOMBRE_CHANNEL ; count++)
   {
     result = system->playSound(FMOD_CHANNEL_FREE, sound[count], true, &channel[count]);
     ERRCHECK(result);
@@ -128,7 +128,7 @@ void Sound::update()
 
 void Sound::stop()
 {
-  for (count = 0; count < 5; count++)
+  for (count = 0; count < NOMBRE_SOUND ; count++)
   {
     result = sound[count]->release();
     ERRCHECK(result);

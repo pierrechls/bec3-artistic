@@ -23,8 +23,8 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  _Form.draw(frequency);
-  _Form.drawCircle();
+  //_Form.draw(frequency);
+  _Graphics.draw(frequency);
 
   windowManager->swapBuffers();
 }

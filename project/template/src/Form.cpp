@@ -57,9 +57,6 @@ Form::Form(){
 
     glBindVertexArray(0); // Unbind VAO
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
     // Load and create a texture
     glGenTextures(1, &this->Textures);
     glBindTexture(GL_TEXTURE_2D, this->Textures); // All upcoming GL_TEXTURE_2D operations now have effect on this texture object
@@ -71,6 +68,9 @@ Form::Form(){
     this->HUDtextures["BG"] = loadImage("assets/textures/white_circle.png");
     if (this->HUDtextures["BG"] == NULL) std::cout << "Texture HUD non chargé" << std::endl;
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this->HUDtextures["BG"]->getWidth(),this->HUDtextures["BG"]->getHeight(), 0, GL_RGBA, GL_FLOAT, this->HUDtextures["BG"]->getPixels());
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDepthFunc(GL_LEQUAL);
     glGenerateMipmap(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
 }
@@ -97,7 +97,7 @@ void Form::draw(float frequence)
     glBindVertexArray(0);
 }
 
-void Form::drawCircle()
+void Form::drawCircle(float frequence, float multi)
 {
     // Bind Texture
     glBindTexture(GL_TEXTURE_2D, this->Textures);
@@ -107,7 +107,7 @@ void Form::drawCircle()
     GLuint transformLoc = glGetUniformLocation(this->shaderTexture.Program, "transform");
     
     glm::mat4 trans;
-    trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));  
+    trans = glm::scale(trans, glm::vec3( frequence * multi , frequence * multi , frequence * multi ));  
 
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 

@@ -9,29 +9,21 @@
 #include <iostream>
 #include <GL/glew.h>
 #include "Shader.hpp"
+#include "Form.hpp"
 
 using namespace std;
 using namespace glimac;
 using namespace glm;
 
-class Form{
+class Graphics{
 
 public:
 
-	Shader shaderColor;
-	Shader shaderTexture;
-
-	Form();
+	Graphics();
 	void draw(float frequence);
-	void drawCircle(float frequence, float multi);
+
 private:
 
-	std::unique_ptr<Image>              HUDtexture;
-	map<string, std::unique_ptr<Image>> HUDtextures;
-
-	GLuint  VBO, VAO, EBO;
-	GLuint  Textures;
-	GLfloat vertices[32];
-	GLuint  indices[6];
+	Form _Form;
 
 };
