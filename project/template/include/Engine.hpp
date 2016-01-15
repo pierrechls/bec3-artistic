@@ -14,6 +14,8 @@
 #include "Graphics.hpp"
 #include "Sound.hpp"
 
+#define NOMBRE_CHANNEL 6
+
 using namespace std;
 using namespace glimac;
 
@@ -28,7 +30,7 @@ class Engine
     private:
       Sound     _Sound;
       Graphics  _Graphics;
-      float frequency;
+      float frequencies [ NOMBRE_CHANNEL ];
 
       void Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
 

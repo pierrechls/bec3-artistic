@@ -13,8 +13,11 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
 
   //Update Sound
   _Sound.update();
-  frequency = _Sound.getFrequency();
-
+  
+  for(int i = 0; i < NOMBRE_CHANNEL; i++)
+  {
+    frequencies[ i ] = _Sound.getFrequencyChannel( i );
+  }
 
   ///////////////////
   /* DRAW GRAPHICS */
@@ -23,8 +26,7 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  //_Form.draw(frequency);
-  _Graphics.draw(frequency);
+  _Graphics.draw( frequencies );
 
   windowManager->swapBuffers();
 }
@@ -51,6 +53,30 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
         if(windowManager->isKeyPressed(SDLK_a))
         {
           _Sound.Event("a");
+        }
+
+        //HIGHPASS
+        if(windowManager->isKeyPressed(SDLK_b))
+        {
+          _Sound.Event("b");
+        }
+
+        //LOWPASS
+        if(windowManager->isKeyPressed(SDLK_c))
+        {
+          _Sound.Event("c");
+        }
+
+        //HIGHPASS
+        if(windowManager->isKeyPressed(SDLK_d))
+        {
+          _Sound.Event("d");
+        }
+
+        //LOWPASS
+        if(windowManager->isKeyPressed(SDLK_e))
+        {
+          _Sound.Event("e");
         }
 
         //HIGHPASS

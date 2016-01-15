@@ -7,9 +7,24 @@ Graphics::Graphics()
 }
 
 
-void Graphics::draw(float frequence)
+void Graphics::draw(float* frequencies)
 {
-    _Form.draw(frequence);
-    _Form.drawCircle(frequence, 300);
-    _Form.drawCircle(frequence, 600);
+    setfrequenciesChannel(frequencies);
+
+    _Form.draw( frequenciesChannel[1] );
+    _Form.drawCircle(frequenciesChannel[1], 600);
+    _Form.drawCircle(frequenciesChannel[1], 900);
+}
+
+void Graphics::setfrequenciesChannel(float* newFrequenciesChannel)
+{
+	for(int i = 0; i < NOMBRE_CHANNEL; i++)
+	{
+		frequenciesChannel[i] = newFrequenciesChannel[i];
+	}
+}
+
+void Graphics::Event(string touch)
+{
+    
 }

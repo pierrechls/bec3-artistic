@@ -15,15 +15,19 @@ using namespace std;
 using namespace glimac;
 using namespace glm;
 
+#define NOMBRE_CHANNEL 6
+
 class Graphics{
 
 public:
 
 	Graphics();
-	void draw(float frequence);
+	void draw(float* frequencies);
+	void Event(string touch);
 
 private:
-
+	float frequenciesChannel[ NOMBRE_CHANNEL ];
+	void setfrequenciesChannel(float* newFrequenciesChannel);
 	Form _Form;
 
 };

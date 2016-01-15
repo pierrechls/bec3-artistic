@@ -99,20 +99,23 @@ void Form::draw(float frequence)
 
 void Form::drawCircle(float frequence, float multi)
 {
-    // Bind Texture
-    glBindTexture(GL_TEXTURE_2D, this->Textures);
-    
-    this->shaderTexture.Use();
+    if(frequence > 0.0005)
+    {
+        // Bind Texture
+        glBindTexture(GL_TEXTURE_2D, this->Textures);
+        
+        this->shaderTexture.Use();
 
-    GLuint transformLoc = glGetUniformLocation(this->shaderTexture.Program, "transform");
-    
-    glm::mat4 trans;
-    trans = glm::scale(trans, glm::vec3( frequence * multi , frequence * multi , frequence * multi ));  
+        GLuint transformLoc = glGetUniformLocation(this->shaderTexture.Program, "transform");
+        
+        glm::mat4 trans;
+        trans = glm::scale(trans, glm::vec3( frequence * multi , frequence * multi , frequence * multi ));  
 
-    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
-    // Draw container
-    glBindVertexArray(this->VAO);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
+        // Draw container
+        glBindVertexArray(this->VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+    }
 }
