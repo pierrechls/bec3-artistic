@@ -1,10 +1,11 @@
-#include "Form.hpp"
+#include "Background.hpp"
 #include <iostream>
 #include <string>
 
-Form::Form(){
+Background::Background(){
 
-	this->shaderColor   = Shader("template/shaders/FormColor.vs.glsl", "template/shaders/FormColor.fs.glsl");
+	this->shaderTexture = Shader("template/shaders/FormTexture.vs.glsl", "template/shaders/FormTexture.fs.glsl");
+
 
     GLfloat NewVertices[] = {
         // Positions          // Colors           // Texture Coords
@@ -56,40 +57,67 @@ Form::Form(){
     glBindVertexArray(0); // Unbind VAO
 
     // Load and create a texture
-    glGenTextures(1, &this->Textures);
-    glBindTexture(GL_TEXTURE_2D, this->Textures); // All upcoming GL_TEXTURE_2D operations now have effect on this texture object
+    glGenTextures(1, &this->TextureBlack);
+    glBindTexture(GL_TEXTURE_2D, this->TextureBlack); // All upcoming GL_TEXTURE_2D operations now have effect on this texture object
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT (usually basic wrapping method)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     //Load texture HUD
-    this->HUDtextures["BG"] = loadImage("assets/textures/white_circle.png");
-    if (this->HUDtextures["BG"] == NULL) std::cout << "Texture HUD non chargé" << std::endl;
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this->HUDtextures["BG"]->getWidth(),this->HUDtextures["BG"]->getHeight(), 0, GL_RGBA, GL_FLOAT, this->HUDtextures["BG"]->getPixels());
+    this->HUDtextures["BG_Black"] = loadImage("assets/textures/bg_black.png");
+    if (this->HUDtextures["BG_Black"] == NULL) std::cout << "Texture HUD non chargé" << std::endl;
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this->HUDtextures["BG_Black"]->getWidth(),this->HUDtextures["BG_Black"]->getHeight(), 0, GL_RGBA, GL_FLOAT, this->HUDtextures["BG_Black"]->getPixels());
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDepthFunc(GL_LEQUAL);
     glGenerateMipmap(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
+
+
+    // Load and create a texture
+    glGenTextures(1, &this->TextureWhite);
+    glBindTexture(GL_TEXTURE_2D, this->TextureWhite); // All upcoming GL_TEXTURE_2D operations now have effect on this texture object
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);   // Set texture wrapping to GL_REPEAT (usually basic wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //Load texture HUD
+    this->HUDtextures["BG_White"] = loadImage("assets/textures/bg_white.png");
+    if (this->HUDtextures["BG_White"] == NULL) std::cout << "Texture HUD non chargé" << std::endl;
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this->HUDtextures["BG_White"]->getWidth(),this->HUDtextures["BG_White"]->getHeight(), 0, GL_RGBA, GL_FLOAT, this->HUDtextures["BG_White"]->getPixels());
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDepthFunc(GL_LEQUAL);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
+
+
+    this->TextureActual = TextureWhite;
+
 }
 
-void Form::draw(float frequence)
+void Background::draw(float frequence, float multi)
 {
-	// Bind Texture
-    glBindTexture(GL_TEXTURE_2D, this->Textures);
-    
-    this->shaderColor.Use();
+    // Bind Texture
+    if(frequence > 0.005) this->TextureActual = this->TextureBlack;
+    else this->TextureActual = this->TextureWhite;
 
-    GLuint transformLoc = glGetUniformLocation(this->shaderColor.Program, "transform");
+    glBindTexture(GL_TEXTURE_2D, this->TextureActual);
+        
+    this->shaderTexture.Use();
+
+    GLuint transformLoc = glGetUniformLocation(this->shaderTexture.Program, "transform");
     
     glm::mat4 trans;
-    //trans = glm::rotate(trans, 90.0f, glm::vec3(0.0, 0.0, 1.0));
-    trans = glm::scale(trans, glm::vec3( frequence * 100, frequence * 100, frequence * 100));  
 
+    //trans = glm::rotate(trans, glm::radians( angle ), glm::vec3( 0.0f , 0.0f , .0f ));
+    trans = glm::scale(trans, glm::vec3( 1.05f , 1.05f , 1.05f ));  
+    
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
     // Draw container
     glBindVertexArray(this->VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+
 }

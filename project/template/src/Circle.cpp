@@ -1,10 +1,11 @@
-#include "Form.hpp"
+#include "Circle.hpp"
 #include <iostream>
 #include <string>
 
-Form::Form(){
+Circle::Circle(){
 
-	this->shaderColor   = Shader("template/shaders/FormColor.vs.glsl", "template/shaders/FormColor.fs.glsl");
+	this->shaderTexture = Shader("template/shaders/FormTexture.vs.glsl", "template/shaders/FormTexture.fs.glsl");
+
 
     GLfloat NewVertices[] = {
         // Positions          // Colors           // Texture Coords
@@ -73,23 +74,25 @@ Form::Form(){
     glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
 }
 
-void Form::draw(float frequence)
+void Circle::draw(float frequence, float multi)
 {
-	// Bind Texture
-    glBindTexture(GL_TEXTURE_2D, this->Textures);
-    
-    this->shaderColor.Use();
+    if(frequence > 0.0005)
+    {
+        // Bind Texture
+        glBindTexture(GL_TEXTURE_2D, this->Textures);
+        
+        this->shaderTexture.Use();
 
-    GLuint transformLoc = glGetUniformLocation(this->shaderColor.Program, "transform");
-    
-    glm::mat4 trans;
-    //trans = glm::rotate(trans, 90.0f, glm::vec3(0.0, 0.0, 1.0));
-    trans = glm::scale(trans, glm::vec3( frequence * 100, frequence * 100, frequence * 100));  
+        GLuint transformLoc = glGetUniformLocation(this->shaderTexture.Program, "transform");
+        
+        glm::mat4 trans;
+        trans = glm::scale(trans, glm::vec3( frequence * multi , frequence * multi , frequence * multi ));  
 
-    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
-    // Draw container
-    glBindVertexArray(this->VAO);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
+        // Draw container
+        glBindVertexArray(this->VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+    }
 }

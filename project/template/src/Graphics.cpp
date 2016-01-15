@@ -17,8 +17,9 @@ void Graphics::draw(float* frequencies)
     setfrequenciesChannel(frequencies);
 
     if(groupA) _Form.draw( frequenciesChannel[0] );
-    _Form.drawCircle(frequenciesChannel[1], 600);
-    _Form.drawCircle(frequenciesChannel[1], 900);
+    _Circle.draw(frequenciesChannel[1], 600);
+    
+    _Background.draw(frequenciesChannel[1], 900);
 }
 
 void Graphics::setfrequenciesChannel(float* newFrequenciesChannel)

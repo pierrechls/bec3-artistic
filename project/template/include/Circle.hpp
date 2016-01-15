@@ -14,15 +14,14 @@ using namespace std;
 using namespace glimac;
 using namespace glm;
 
-class Form{
+class Circle{
 
 public:
 
-	Shader shaderColor;
+	Shader shaderTexture;
 
-	Form();
-	void draw(float frequence);
-	
+	Circle();
+	void draw(float frequence, float multi);
 private:
 
 	std::unique_ptr<Image>              HUDtexture;

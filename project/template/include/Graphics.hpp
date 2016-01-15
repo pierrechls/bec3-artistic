@@ -8,8 +8,11 @@
 #include <map>
 #include <iostream>
 #include <GL/glew.h>
+
 #include "Shader.hpp"
 #include "Form.hpp"
+#include "Circle.hpp"
+#include "Background.hpp"
 
 using namespace std;
 using namespace glimac;
@@ -31,6 +34,9 @@ private:
 
 	float frequenciesChannel[ NOMBRE_CHANNEL ];
 	void setfrequenciesChannel(float* newFrequenciesChannel);
+	
 	Form _Form;
+	Circle _Circle;
+	Background _Background;
 
 };

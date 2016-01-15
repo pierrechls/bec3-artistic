@@ -14,22 +14,24 @@ using namespace std;
 using namespace glimac;
 using namespace glm;
 
-class Form{
+class Background{
 
 public:
 
-	Shader shaderColor;
+	Shader shaderTexture;
 
-	Form();
-	void draw(float frequence);
-	
+	Background();
+	void draw(float frequence, float multi);
 private:
 
 	std::unique_ptr<Image>              HUDtexture;
 	map<string, std::unique_ptr<Image>> HUDtextures;
 
 	GLuint  VBO, VAO, EBO;
-	GLuint  Textures;
+	GLuint  TextureBlack;
+	GLuint  TextureWhite;
+	GLuint  TextureActual;
+
 	GLfloat vertices[32];
 	GLuint  indices[6];
 
