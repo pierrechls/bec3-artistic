@@ -5,7 +5,7 @@
 Graphics::Graphics()
 {
 	groupA = false;
-	groupB = true;
+	groupB = false;
 	groupC = false;
 	groupD = false;
 	groupE = false;
@@ -18,16 +18,22 @@ void Graphics::draw(float* frequencies)
 
     //if(groupA) _Square.draw( frequenciesChannel[0] );
 
-
-    _Triangle.draw(frequencies[2]);
-
-    //Draw circle with bass (channel 3, groupe B)
-    _Circle.draw(frequenciesChannel[2], 1.0);
-    _Circle.draw(frequenciesChannel[2], 0.2);
-    _Circle.draw(frequenciesChannel[2], 0.5);
-    
     //Draw background with music (channel 0, groupe A)
     if(groupA) _Background.draw(frequenciesChannel[ 2 ], 900);
+
+    //Draw circle with bass (channel 3, groupe B)
+    if(groupB)
+    {
+      _Circle.draw(frequenciesChannel[2], 1.0);
+      _Circle.draw(frequenciesChannel[2], 0.2);
+      _Circle.draw(frequenciesChannel[2], 0.5);
+    }
+
+    if(groupD)
+    {
+      _Triangle.draw(frequencies[2]);
+    }
+
 }
 
 void Graphics::setfrequenciesChannel(float* newFrequenciesChannel)
