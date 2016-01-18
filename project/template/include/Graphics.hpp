@@ -35,7 +35,7 @@ private:
 
 	float frequenciesChannel[ NOMBRE_CHANNEL ];
 	void setfrequenciesChannel(float* newFrequenciesChannel);
-	
+
 	Square _Square;
 	Circle _Circle;
 	Triangle _Triangle;
