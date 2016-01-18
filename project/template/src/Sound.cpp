@@ -49,7 +49,7 @@ Sound::Sound()
 
   //SOUNDS TO CHANNEL E (NB = 1)
   nb_SoundGroupE = 1;
-  result = system->createSound("assets/sounds/SOUND_Nord.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[5]); ERRCHECK(result);
+  result = system->createSound("assets/sounds/SOUND_NASA.wav", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sound[5]); ERRCHECK(result);
 
 
   ///////////////////////////////
