@@ -15,6 +15,9 @@
 #include "Background.hpp"
 #include "Triangle.hpp"
 
+#include "Model.hpp"
+#include "Camera.hpp"
+
 using namespace std;
 using namespace glimac;
 using namespace glm;
@@ -26,7 +29,7 @@ class Graphics{
 public:
 
 	Graphics();
-	void draw(float* frequencies);
+	void draw(float* frequencies, float screenWidth, float screenHeight);
 	void Event(string touch);
 
 private:
@@ -40,5 +43,10 @@ private:
 	Circle _Circle;
 	Triangle _Triangle;
 	Background _Background;
+
+	Camera camera;
+
+	Shader _ShaderModel;
+	map < string, Model > models;
 
 };
