@@ -1,8 +1,8 @@
-#include "Form.hpp"
+#include "Square.hpp"
 #include <iostream>
 #include <string>
 
-Form::Form(){
+Square::Square(){
 
 	this->shaderColor   = Shader("template/shaders/FormColor.vs.glsl", "template/shaders/FormColor.fs.glsl");
 
@@ -73,7 +73,7 @@ Form::Form(){
     glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
 }
 
-void Form::draw(float frequence)
+void Square::draw(float frequence)
 {
 	// Bind Texture
     glBindTexture(GL_TEXTURE_2D, this->Textures);

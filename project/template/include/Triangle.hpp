@@ -14,23 +14,22 @@ using namespace std;
 using namespace glimac;
 using namespace glm;
 
-class Form{
+class Triangle{
 
 public:
 
 	Shader shaderColor;
 
-	Form();
+	Triangle();
 	void draw(float frequence);
 	
 private:
 
-	std::unique_ptr<Image>              HUDtexture;
-	map<string, std::unique_ptr<Image>> HUDtextures;
+	int cptRandom;
+	float randomPosition[16];
 
-	GLuint  VBO, VAO, EBO;
-	GLuint  Textures;
-	GLfloat vertices[32];
-	GLuint  indices[6];
+
+	GLuint  VBO, VAO;
+	GLfloat vertices[9];
 
 };

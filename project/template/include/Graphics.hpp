@@ -10,9 +10,10 @@
 #include <GL/glew.h>
 
 #include "Shader.hpp"
-#include "Form.hpp"
+#include "Square.hpp"
 #include "Circle.hpp"
 #include "Background.hpp"
+#include "Triangle.hpp"
 
 using namespace std;
 using namespace glimac;
@@ -35,8 +36,9 @@ private:
 	float frequenciesChannel[ NOMBRE_CHANNEL ];
 	void setfrequenciesChannel(float* newFrequenciesChannel);
 	
-	Form _Form;
+	Square _Square;
 	Circle _Circle;
+	Triangle _Triangle;
 	Background _Background;
 
 };

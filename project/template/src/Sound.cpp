@@ -100,7 +100,7 @@ Sound::Sound()
     }
 
 
-    else if ( count < nb_SoundGroupA + nb_SoundGroupB ){
+    else if ( count < (nb_SoundGroupA + nb_SoundGroupB) ){
       result = channel[count]->setChannelGroup(groupB);
     }
 
@@ -123,6 +123,7 @@ Sound::Sound()
 
   static bool mute = true;
   groupA->setMute(mute);
+  groupB->setMute(mute);
   groupC->setMute(mute);
   groupD->setMute(mute);
   groupE->setMute(mute);
@@ -183,12 +184,12 @@ void Sound::stop()
 
 float Sound::getFrequencyChannel(int numberChannel)
 {
-       if(numberChannel == 1) return spectreChannel1 [258];
-  else if(numberChannel == 2) return spectreChannel2 [258];
-  else if(numberChannel == 3) return spectreChannel3 [258];
-  else if(numberChannel == 4) return spectreChannel4 [258];
-  else if(numberChannel == 5) return spectreChannel5 [258];
-  else                        return spectreChannel6 [258];
+       if(numberChannel == 0) return spectreChannel1 [ 0 ]; //Get Bass BASS_Kombi2
+  else if(numberChannel == 1) return spectreChannel2 [258];
+  else if(numberChannel == 2) return spectreChannel3 [ 0 ]; //Get Bass BEAT_JetBd2
+  else if(numberChannel == 3) return spectreChannel4 [258];
+  else if(numberChannel == 4) return spectreChannel5 [258];
+  else if(numberChannel == 5) return spectreChannel6 [258]; 
 }
 
 void Sound::ERRCHECK(FMOD_RESULT result)
@@ -216,7 +217,7 @@ void Sound::Event(string touch)
   
   if( touch == "b" )
   {
-    static bool mute = true;
+    static bool mute = false;
     groupB->setMute(mute);
     mute = !mute;
   }

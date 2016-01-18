@@ -14,6 +14,7 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
   //Update Sound
   _Sound.update();
   
+  //Get frequencies for all sounds
   for(int i = 0; i < NOMBRE_CHANNEL; i++)
   {
     frequencies[ i ] = _Sound.getFrequencyChannel( i );
@@ -81,13 +82,6 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
         if(windowManager->isKeyPressed(SDLK_e))
         {
           _Sound.Event("e");
-          _Graphics.Event("e");
-        }
-
-        //HIGHPASS
-        if(windowManager->isKeyPressed(SDLK_b))
-        {
-          _Sound.Event("b");
           _Graphics.Event("e");
         }
 

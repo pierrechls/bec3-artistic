@@ -14,25 +14,22 @@ using namespace std;
 using namespace glimac;
 using namespace glm;
 
-class Background{
+class Square{
 
 public:
 
-	Shader shaderTexture;
-	float best;
+	Shader shaderColor;
 
-	Background();
-	void draw(float frequence, float multi);
+	Square();
+	void draw(float frequence);
+	
 private:
 
 	std::unique_ptr<Image>              HUDtexture;
 	map<string, std::unique_ptr<Image>> HUDtextures;
 
 	GLuint  VBO, VAO, EBO;
-	GLuint  TextureBlack;
-	GLuint  TextureWhite;
-	GLuint  TextureActual;
-
+	GLuint  Textures;
 	GLfloat vertices[32];
 	GLuint  indices[6];
 

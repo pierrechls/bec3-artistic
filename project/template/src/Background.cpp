@@ -6,6 +6,7 @@ Background::Background(){
 
 	this->shaderTexture = Shader("template/shaders/FormTexture.vs.glsl", "template/shaders/FormTexture.fs.glsl");
 
+    this->best = 0;
 
     GLfloat NewVertices[] = {
         // Positions          // Colors           // Texture Coords
@@ -99,8 +100,11 @@ Background::Background(){
 void Background::draw(float frequence, float multi)
 {
     // Bind Texture
-    if(frequence > 0.005) this->TextureActual = this->TextureBlack;
-    else this->TextureActual = this->TextureWhite;
+    if(frequence > 0.048)
+    {
+        if( this->TextureActual == this->TextureBlack ) this->TextureActual = this->TextureWhite;
+        else this->TextureActual = this->TextureBlack;
+    }   
 
     glBindTexture(GL_TEXTURE_2D, this->TextureActual);
         
@@ -109,8 +113,6 @@ void Background::draw(float frequence, float multi)
     GLuint transformLoc = glGetUniformLocation(this->shaderTexture.Program, "transform");
     
     glm::mat4 trans;
-
-    //trans = glm::rotate(trans, glm::radians( angle ), glm::vec3( 0.0f , 0.0f , .0f ));
     trans = glm::scale(trans, glm::vec3( 1.05f , 1.05f , 1.05f ));  
     
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
@@ -119,5 +121,6 @@ void Background::draw(float frequence, float multi)
     glBindVertexArray(this->VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+
 
 }

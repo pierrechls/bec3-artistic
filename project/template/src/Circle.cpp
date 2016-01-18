@@ -76,7 +76,7 @@ Circle::Circle(){
 
 void Circle::draw(float frequence, float multi)
 {
-    if(frequence > 0.0005)
+    if(frequence > 0.048)
     {
         // Bind Texture
         glBindTexture(GL_TEXTURE_2D, this->Textures);
@@ -86,7 +86,7 @@ void Circle::draw(float frequence, float multi)
         GLuint transformLoc = glGetUniformLocation(this->shaderTexture.Program, "transform");
         
         glm::mat4 trans;
-        trans = glm::scale(trans, glm::vec3( frequence * multi , frequence * multi , frequence * multi ));  
+        trans = glm::scale(trans, glm::vec3( multi , multi , multi ));  
 
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 

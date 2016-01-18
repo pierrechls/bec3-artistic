@@ -16,10 +16,18 @@ void Graphics::draw(float* frequencies)
 {
     setfrequenciesChannel(frequencies);
 
-    if(groupA) _Form.draw( frequenciesChannel[0] );
-    _Circle.draw(frequenciesChannel[1], 600);
+    //if(groupA) _Square.draw( frequenciesChannel[0] );
+
+
+    _Triangle.draw(frequencies[2]);
+
+    //Draw circle with bass (channel 3, groupe B)
+    _Circle.draw(frequenciesChannel[2], 1.0);
+    _Circle.draw(frequenciesChannel[2], 0.2);
+    _Circle.draw(frequenciesChannel[2], 0.5);
     
-    _Background.draw(frequenciesChannel[1], 900);
+    //Draw background with music (channel 0, groupe A)
+    if(groupA) _Background.draw(frequenciesChannel[ 2 ], 900);
 }
 
 void Graphics::setfrequenciesChannel(float* newFrequenciesChannel)
