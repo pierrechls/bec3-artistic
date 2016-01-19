@@ -10,17 +10,7 @@ Project realised in IMAC Engineering School
 
 ## How to use it
 
-#### Clone the project
-
-	git clone https://github.com/PierreChls/Bec3Artistic.git
-	
-#### Build
-
-	cd Bec3Artistic/build
-	cmake ../project
-	make
-	
-#### Open a new terminal window and run WebLite API
+####Run WebLite API
 
 Linux and Mac OSX :
 
@@ -29,6 +19,16 @@ Linux and Mac OSX :
 Windows : 
 
 	./weblite-api.bat
+
+#### Open a new terminal window and clone the project
+
+	git clone https://github.com/PierreChls/Bec3Artistic.git
+	
+#### Build
+
+	cd Bec3Artistic/build
+	cmake ../project
+	make
 
 #### Run project 
 	
