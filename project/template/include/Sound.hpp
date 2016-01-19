@@ -40,8 +40,8 @@ class Sound
       FMOD::Sound        *sound[NOMBRE_SOUND];
       FMOD::Channel      *channel[NOMBRE_CHANNEL];
       FMOD::ChannelGroup *groupA, *groupB, *groupC, *groupD, *groupE, *masterGroup;
-      FMOD::DSP          *dspreverb, *dspflange, *dsplowpass;
-      FMOD_RESULT         result;
+      FMOD::DSP          *dspflange, *dsplowpass;
+      FMOD_RESULT        result;
 
       int                nb_SoundGroupA, nb_SoundGroupB, nb_SoundGroupC, nb_SoundGroupD, nb_SoundGroupE;
 

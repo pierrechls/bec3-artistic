@@ -6,6 +6,9 @@ Circle::Circle(){
 
 	this->shaderTexture = Shader("template/shaders/FormTexture.vs.glsl", "template/shaders/FormTexture.fs.glsl");
 
+    ////////////////////////////
+    /*  INITIALIZE POSITIONS  */
+    ////////////////////////////
 
     GLfloat NewVertices[] = {
         // Positions          // Colors           // Texture Coords
@@ -55,6 +58,12 @@ Circle::Circle(){
     glEnableVertexAttribArray(2);
 
     glBindVertexArray(0); // Unbind VAO
+
+
+    ////////////////////////////
+    /*      ADD TEXTURES      */
+    ////////////////////////////
+
 
     // Load and create a texture
     glGenTextures(1, &this->Textures);

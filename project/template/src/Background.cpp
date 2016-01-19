@@ -5,8 +5,10 @@
 Background::Background(){
 
 	this->shaderTexture = Shader("template/shaders/FormTexture.vs.glsl", "template/shaders/FormTexture.fs.glsl");
-
-    this->best = 0;
+    
+    ////////////////////////////
+    /*  INITIALIZE POSITIONS  */
+    ////////////////////////////
 
     GLfloat NewVertices[] = {
         // Positions          // Colors           // Texture Coords
@@ -56,6 +58,12 @@ Background::Background(){
     glEnableVertexAttribArray(2);
 
     glBindVertexArray(0); // Unbind VAO
+
+
+    ////////////////////////////
+    /*      ADD TEXTURES      */
+    ////////////////////////////
+
 
     // Load and create a texture
     glGenTextures(1, &this->TextureBlack);

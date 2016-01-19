@@ -8,14 +8,19 @@ Engine::Engine(){}
 void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done)
 {
   
-  //Event SDL Key
+  ///////////////////
+  /*   SDL EVENTS  */
+  ///////////////////
+  
   Event(windowManager, screenWidth, screenHeight, done);  
 
-  //Update Sound
-  _Sound.update();
+
+  ///////////////////
+  /*  FMOD SOUNDS  */
+  ///////////////////
   
-  //Get frequencies for all sounds
-  for(int i = 0; i < NOMBRE_CHANNEL; i++)
+  _Sound.update();
+  for(int i = 0; i < NOMBRE_CHANNEL; i++) //Get frequencies for all sounds
   {
     frequencies[ i ] = _Sound.getFrequencyChannel( i );
   }
@@ -26,7 +31,6 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
 
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
   _Graphics.draw( frequencies, 800.0f, 600.0f );
 
   windowManager->swapBuffers();
@@ -50,52 +54,48 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
           (*done) = true;
         }
 
-        //LOWPASS
+        //GROUP A
         if(windowManager->isKeyPressed(SDLK_a))
         {
           _Sound.Event("a");
           _Graphics.Event("a");
         }
 
-        //HIGHPASS
+        //GROUP B
         if(windowManager->isKeyPressed(SDLK_b))
         {
           _Sound.Event("b");
           _Graphics.Event("b");
         }
 
-        //LOWPASS
+        //GROUP C
         if(windowManager->isKeyPressed(SDLK_c))
         {
           _Sound.Event("c");
           _Graphics.Event("c");
         }
 
-        //HIGHPASS
+        //GROUP E
         if(windowManager->isKeyPressed(SDLK_d))
         {
           _Sound.Event("d");
           _Graphics.Event("d");
         }
 
-        //LOWPASS
+        //GROUP E
         if(windowManager->isKeyPressed(SDLK_e))
         {
           _Sound.Event("e");
           _Graphics.Event("e");
         }
 
-        //ECHO
-        if(windowManager->isKeyPressed(SDLK_r))
-        {
-          _Sound.Event("r");
-        }
-
+        //ACTIVE OR NOT FLANGER EFFECT
         if(windowManager->isKeyPressed(SDLK_f))
         {
           _Sound.Event("f");
         }
 
+        //ACTIVE OR NOT LOWPASS EFFECT
         if(windowManager->isKeyPressed(SDLK_l))
         {
           _Sound.Event("l");

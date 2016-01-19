@@ -19,7 +19,6 @@ class Background{
 public:
 
 	Shader shaderTexture;
-	float best;
 
 	Background();
 	void draw(float frequence, float multi);

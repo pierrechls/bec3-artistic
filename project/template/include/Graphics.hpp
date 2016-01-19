@@ -39,14 +39,14 @@ private:
 	float frequenciesChannel[ NOMBRE_CHANNEL ];
 	void setfrequenciesChannel(float* newFrequenciesChannel);
 
-	Square _Square;
-	Circle _Circle;
-	Triangle _Triangle;
+	Square     _Square;
+	Circle     _Circle;
+	Triangle   _Triangle;
 	Background _Background;
 
-	Camera camera;
+	Camera _Camera;
 
 	Shader _ShaderModel;
-	map < string, Model > models;
+	Model  _Model;
 
 };

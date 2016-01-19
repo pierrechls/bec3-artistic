@@ -76,14 +76,18 @@ Sound::Sound()
   result = masterGroup->addGroup(groupD); ERRCHECK(result);
   result = masterGroup->addGroup(groupE); ERRCHECK(result);
   
-  cout << "Press 'A' to mute/unmute group A" << endl;
-  cout << "Press 'B' to mute/unmute group B" << endl;
-  cout << " " << endl;
-  cout << "Press 'R' to place reverb on group A" << endl;
-  cout << "Press 'F' to place flange on group B" << endl;
-  cout << "Press 'L' to place lowpass on master group (everything)" << endl;
-  cout << "Press 'Esc' to quit" << endl;
-  cout << "" << endl;
+  cout << "ˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉ" << endl;
+  cout << "Press 'A' to mute/unmute group  A" << endl;
+  cout << "Press 'B' to mute/unmute group  B" << endl;
+  cout << "Press 'C' to mute/unmute group  C" << endl;
+  cout << "Press 'D' to mute/unmute group  D" << endl;
+  cout << "Press 'E' to mute/unmute group  E" << endl;
+  cout << "                                 " << endl;
+  cout << "Press 'F' to flange  master group" << endl;
+  cout << "Press 'L' to lowpass master group" << endl;
+  cout << "Press 'Esc' to quit  installation" << endl;
+  cout << "                                 " << endl;
+  cout << "ˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉ" << endl;
 
   
   ///////////////////////////////
@@ -134,7 +138,6 @@ Sound::Sound()
   /*       CREATE EFFECT       */
   ///////////////////////////////
 
-  result = system->createDSPByType(FMOD_DSP_TYPE_SFXREVERB, &dspreverb); ERRCHECK(result);
   result = system->createDSPByType(FMOD_DSP_TYPE_FLANGE, &dspflange); ERRCHECK(result);
   result = dspflange->setParameter(FMOD_DSP_FLANGE_RATE, 1.0f); ERRCHECK(result);
   result = system->createDSPByType(FMOD_DSP_TYPE_LOWPASS, &dsplowpass); ERRCHECK(result);
@@ -168,7 +171,6 @@ void Sound::stop()
     ERRCHECK(result);
   }
 
-  result = dspreverb->release();  ERRCHECK(result);
   result = dspflange->release();  ERRCHECK(result);
   result = dsplowpass->release(); ERRCHECK(result);
 
@@ -190,6 +192,7 @@ float Sound::getFrequencyChannel(int numberChannel)
   else if(numberChannel == 3) return spectreChannel4 [258];
   else if(numberChannel == 4) return spectreChannel5 [258];
   else if(numberChannel == 5) return spectreChannel6 [258]; 
+  else return 0;
 }
 
 void Sound::ERRCHECK(FMOD_RESULT result)
@@ -247,28 +250,12 @@ void Sound::Event(string touch)
   /*    EFFECTS GROUPE   */
   /////////////////////////
 
-  if( touch == "r" || touch == "R")
-  {
-    static bool reverb = true;
-          
-    if (reverb)
-    {
-      groupA->addDSP(dspreverb, 0);
-    }
-    else
-    {
-      dspreverb->remove();
-    }
-
-    reverb = !reverb;
-  }
-
-  if( touch == "f" || touch == "F")
+  if( touch == "f")
   {
     static bool flange = true;
     if (flange)
     {
-      groupB->addDSP(dspflange, 0);
+      masterGroup->addDSP(dspflange, 0);
     }
     else
     {
@@ -278,7 +265,7 @@ void Sound::Event(string touch)
     flange = !flange;
   }
 
-  if( touch == "l" || touch == "L")
+  if( touch == "l")
   {
     static bool lowpass = true;
     if (lowpass)

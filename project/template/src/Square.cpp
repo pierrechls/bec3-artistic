@@ -54,30 +54,10 @@ Square::Square(){
     glEnableVertexAttribArray(2);
 
     glBindVertexArray(0); // Unbind VAO
-
-    // Load and create a texture
-    glGenTextures(1, &this->Textures);
-    glBindTexture(GL_TEXTURE_2D, this->Textures); // All upcoming GL_TEXTURE_2D operations now have effect on this texture object
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT (usually basic wrapping method)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    //Load texture HUD
-    this->HUDtextures["BG"] = loadImage("assets/textures/white_circle.png");
-    if (this->HUDtextures["BG"] == NULL) std::cout << "Texture HUD non chargé" << std::endl;
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this->HUDtextures["BG"]->getWidth(),this->HUDtextures["BG"]->getHeight(), 0, GL_RGBA, GL_FLOAT, this->HUDtextures["BG"]->getPixels());
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glDepthFunc(GL_LEQUAL);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
 }
 
 void Square::draw(float frequence)
-{
-	// Bind Texture
-    glBindTexture(GL_TEXTURE_2D, this->Textures);
-    
+{   
     this->shaderColor.Use();
 
     GLuint transformLoc = glGetUniformLocation(this->shaderColor.Program, "transform");
