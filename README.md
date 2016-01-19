@@ -20,7 +20,7 @@ Project realised in IMAC Engineering School
 	cmake ../project
 	make
 	
-#### Run WebLite API
+#### Open a new terminal window and run WebLite API
 
 Linux and Mac OSX :
 
