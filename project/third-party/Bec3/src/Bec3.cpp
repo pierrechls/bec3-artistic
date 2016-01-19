@@ -1,7 +1,4 @@
-#include "VirtualObject.hpp"
-#include "Bec3.hpp"
-#include "HTTPError.hpp"
-#include "restclient-cpp/restclient.h"
+#include "Bec3/Bec3.hpp"
 
 extern RestClient::headermap headers;
 
@@ -20,14 +17,13 @@ Bec3::~Bec3(){
 }
 
 void Bec3::connect(string username, string password){
-	RestClient::headermap TEST;
 	RestClient::response connect = RestClient::post("http://localhost:9000/login", "text/json", "{\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"service\":\"im.bec3.com\",\"resource\":\"REST\"}");
 	httpError(connect.code);
+	cout << "\033[32m[connected]\033[30m" << endl;
 	//Rajouter la session
 }
 
 void Bec3::disconnect(){
-	RestClient::headermap TEST;
 	RestClient::response disconnect = RestClient::del("http://localhost:9000/login", headers, 1);
 	httpError(disconnect.code);
 	headers["Cookie"] = "";

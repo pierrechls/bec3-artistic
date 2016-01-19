@@ -2,7 +2,8 @@
 #define VIRTUALOBJECT_HPP
 
 #include <string>
-#include "restclient-cpp/restclient.h"
+#include <restclient-cpp/restclient.h>
+#include "Bec3/HTTPError.hpp"
 
 struct State {
 	std::string id;

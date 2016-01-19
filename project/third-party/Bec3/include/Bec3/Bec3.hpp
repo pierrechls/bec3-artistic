@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include "VirtualObject.hpp"
+#include "Bec3/VirtualObject.hpp"
 
 class Bec3 {
 	private :
