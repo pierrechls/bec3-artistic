@@ -34,9 +34,14 @@ void Bec3::disconnect(){
 
 void Bec3::updateObjects(){
 	for(auto it=Objects.begin(); it!=Objects.end(); ++it)
-		it->second.updateState();
+		it->second->updateState();
+}
+
+void Bec3::addObject(string id, string type){
+	std::shared_ptr<VirtualObject> myObject(new VirtualObject(id, type));
+	Objects.insert(std::pair<string,std::shared_ptr<VirtualObject>>(id, myObject));
 }
 
 State &Bec3::getObjectState(string id){
-	return Objects.find(id)->second.getState();
+	return Objects.find(id)->second->getState();
 }

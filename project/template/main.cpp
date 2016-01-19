@@ -9,33 +9,16 @@ using namespace std;
 using namespace glimac;
 
 #include <Bec3/Bec3.hpp>
-#include <Bec3/VirtualObject.hpp>
-#include <restclient-cpp/restclient.h>
 
 int main(int argc, const char **argv) {	
-	//RestClient::headermap lol;
-	//headers["Cookie"] = "PLAY_SESSION=1348ee1c612518e7097c41ea9e181db834e6123c-UID=corentin.limoge%2540im.bec3.com";
-	
 	Bec3 mySession = Bec3(string("corentin.limoge"), string("coucou"));
+	mySession.addObject("TestLight", "light");
+	mySession.addObject("MSG", "msg-sender");
 	
-	/*while(1){
-		RestClient::response light = RestClient::get("http://localhost:9000/feature/COUCOU", headers, 1);
-		cout << light.code << endl;
-		cout << light.body << endl;
-	}*/
-	/*RestClient::response r = RestClient::post("http://url.com/post", "text/json", "{\"foo\": \"bla\"}");
-	RestClient::response r = RestClient::put("http://url.com/put", "text/json", "{\"foo\": \"bla\"}");
-	RestClient::response r = RestClient::del("http://url.com/delete");
-
-	// add some headers
-
-	RestClient::headermap headers;
-	headers["Accept"] = "application/json";
-
-	RestClient::response r = RestClient::get("http://url.com", headers);
-	RestClient::response r = RestClient::post("http://url.com/post", "text/json", "{\"foo\": \"bla\"}", headers);
-	RestClient::response r = RestClient::put("http://url.com/put", "text/json", "{\"foo\": \"bla\"}", headers);
-	RestClient::response r = RestClient::del("http://url.com/delete", headers);*/
+	//Test d'affichage des objects sur la platerforme Bec3
+	for(int i = 0; i < 1000000; ++i){
+		cout << i << endl;
+	}
 
     return 0;
 }
