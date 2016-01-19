@@ -22,7 +22,13 @@ Project realised in IMAC Engineering School
 	
 #### Run WebLite API
 
+Linux and Mac OSX :
+
 	./weblite-api
+	
+Windows : 
+
+	./weblite-api.bat
 
 #### Run project 
 	
