@@ -10,6 +10,8 @@ Graphics::Graphics()
 	groupD = false;
 	groupE = false;
 
+  this->angle = 0.0f;
+
   this->_ShaderModel = Shader ("template/shaders/model_loading.vs.glsl", "template/shaders/model_loading.fs.glsl");
   this->_Model = Model("assets/models/Satellite.obj");
 
@@ -47,7 +49,6 @@ void Graphics::draw(float* frequencies, float screenWidth, float screenHeight)
 
       glEnable(GL_BLEND);
       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-      glDepthFunc(GL_LEQUAL);
 
       glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)screenWidth/(float)screenHeight, 0.1f, 100.0f);
       glm::mat4 view = _Camera.getViewMatrix();
@@ -56,11 +57,13 @@ void Graphics::draw(float* frequencies, float screenWidth, float screenHeight)
 
 
       glm::mat4 model;
-      model = glm::translate(model, glm::vec3(0.0f, 0.0f, 1.0f)); // Translate it down a bit so it's at the center of the scene
-      model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // It's a bit too big for our scene, so scale it down
-      model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f)); // It's a bit too big for our scene, so scale it down
+      model = glm::translate(model, glm::vec3(0.03f, 0.0f, 0.5f)); // Translate it down a bit so it's at the center of the scene
+      model = glm::rotate(model, glm::radians( this->angle ), glm::vec3(1.0f, 1.0f, 1.0f)); // It's a bit too big for our scene, so scale it down
+      model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f)); // It's a bit too big for our scene, so scale it down
       glUniformMatrix4fv(glGetUniformLocation(_ShaderModel.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
       _Model.Draw(_ShaderModel);
+
+      this->angle++;
     }
 
 }

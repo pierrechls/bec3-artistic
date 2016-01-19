@@ -61,8 +61,7 @@ void Triangle::draw(float frequence)
     
     glm::mat4 trans;
 
-    trans  = glm::translate(trans, glm::vec3( randomPosition[ cptRandom ], randomPosition[ cptRandom + 1 ], 0.0f));
-    //trans = glm::rotate(trans, 90.0f, glm::vec3(0.0, 0.0, 1.0));
+    trans  = glm::translate(trans, glm::vec3( randomPosition[ cptRandom ], randomPosition[ cptRandom + 1 ], 1.0f));
     trans = glm::scale(trans, glm::vec3( 0.05, 0.05, 0.05));  
 
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));

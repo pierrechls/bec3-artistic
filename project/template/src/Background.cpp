@@ -121,6 +121,7 @@ void Background::draw(float frequence, float multi)
     GLuint transformLoc = glGetUniformLocation(this->shaderTexture.Program, "transform");
     
     glm::mat4 trans;
+    trans = glm::translate(trans, glm::vec3(0.0f, 0.0f, 1.0f));
     trans = glm::scale(trans, glm::vec3( 1.05f , 1.05f , 1.05f ));  
     
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));

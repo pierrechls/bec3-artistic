@@ -31,7 +31,7 @@ void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint scr
 
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  _Graphics.draw( frequencies, 800.0f, 600.0f );
+  _Graphics.draw( frequencies, 800.0f, 600.0f);
 
   windowManager->swapBuffers();
 }

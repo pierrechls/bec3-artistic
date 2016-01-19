@@ -49,4 +49,6 @@ private:
 	Shader _ShaderModel;
 	Model  _Model;
 
+	float angle;
+
 };
