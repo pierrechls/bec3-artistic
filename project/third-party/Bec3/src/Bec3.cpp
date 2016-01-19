@@ -1,4 +1,7 @@
 #include "Bec3/Bec3.hpp"
+#include "Bec3/VirtualObject.hpp"
+#include <restclient-cpp/restclient.h>
+#include "Bec3/HTTPError.hpp"
 
 extern RestClient::headermap headers;
 

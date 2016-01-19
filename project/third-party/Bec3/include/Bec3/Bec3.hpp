@@ -3,8 +3,9 @@
 
 #include <map>
 #include <string>
-#include "VirtualObject.hpp"
-#include "Bec3/VirtualObject.hpp"
+
+class VirtualObject;
+struct State;
 
 class Bec3 {
 	private :

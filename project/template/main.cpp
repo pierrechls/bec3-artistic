@@ -3,24 +3,20 @@
 #include <iostream>
 #include <string>
 #include "Engine.hpp"
+#include "debug.hpp"
 
 using namespace std;
 using namespace glimac;
 
 #include <Bec3/Bec3.hpp>
-//#include <restclient-cpp/restclient.h>
-
-using namespace std;
-
-RestClient::headermap headers;
+#include <Bec3/VirtualObject.hpp>
+#include <restclient-cpp/restclient.h>
 
 int main(int argc, const char **argv) {	
 	//RestClient::headermap lol;
-	headers["Cookie"] = "PLAY_SESSION=1348ee1c612518e7097c41ea9e181db834e6123c-UID=corentin.limoge%2540im.bec3.com";
+	//headers["Cookie"] = "PLAY_SESSION=1348ee1c612518e7097c41ea9e181db834e6123c-UID=corentin.limoge%2540im.bec3.com";
 	
 	Bec3 mySession = Bec3(string("corentin.limoge"), string("coucou"));
-
-	RestClient::response light = RestClient::get("", headers, 1);
 	
 	/*while(1){
 		RestClient::response light = RestClient::get("http://localhost:9000/feature/COUCOU", headers, 1);

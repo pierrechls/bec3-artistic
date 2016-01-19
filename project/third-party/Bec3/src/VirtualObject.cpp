@@ -1,6 +1,8 @@
 #include "Bec3/VirtualObject.hpp"
+#include "Bec3/HTTPError.hpp"
+#include <restclient-cpp/restclient.h>
 
-extern RestClient::headermap headers;
+RestClient::headermap headers;
 
 using namespace std;
 
