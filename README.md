@@ -2,7 +2,7 @@
 
 Project realised in IMAC Engineering School
 
-**Supported OS (require OpenGL 3+)**
+**Supported OS :**
 
 - Linux Ubuntu
 - Mac OSX
@@ -10,7 +10,17 @@ Project realised in IMAC Engineering School
 
 ## How to use it
 
-#### Clone the project
+####Run WebLite API
+
+Linux and Mac OSX :
+
+	./weblite-api
+	
+Windows : 
+
+	./weblite-api.bat
+
+#### Open a new terminal window and clone the project
 
 	git clone https://github.com/PierreChls/Bec3Artistic.git
 	
@@ -19,9 +29,9 @@ Project realised in IMAC Engineering School
 	cd Bec3Artistic/build
 	cmake ../project
 	make
-	
-#### Run
 
+#### Run project 
+	
 	./template/artistic
 
 ##Prior installation
@@ -50,6 +60,7 @@ Linux :
     $ sudo apt-get install glew
 
 Mac OSX :
+
     $ brew install glew
 
 ####SDL2
@@ -64,4 +75,17 @@ Mac OSX :
 
 ####FMOD
 
-- [Download FMOD Ex API](http://www.fmod.org/browse-fmod-ex-api/)
+Download [FMOD Ex API](http://www.fmod.org/browse-fmod-ex-api/)
+
+####CURL
+
+Download [CURL](http://curl.haxx.se/download.html)
+
+
+###You need install Web-Lite API (created by Bec3)
+
+- Download [Web-Lite](https://drive.google.com/file/d/0ByN00DGNcsTBSUZDbWktbXh2RHM/view?usp=sharing)
+- Install [JAVA ORACLE JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- Install [SBT](http://www.scala-sbt.org/download.html)
+- Follow the instructions in the README file
+
