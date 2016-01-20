@@ -10,14 +10,19 @@ using namespace glimac;
 
 #include <Bec3/Bec3.hpp>
 
-int main(int argc, const char **argv) {	
+int main(int argc, const char **argv) {
 	Bec3 mySession = Bec3(string("corentin.limoge"), string("coucou"));
 	mySession.addObject("TestLight", "light");
 	mySession.addObject("MSG", "msg-sender");
-	
+
+
+
+
+
 	//Test d'affichage des objects sur la platerforme Bec3
-	for(int i = 0; i < 1000000; ++i){
-		cout << i << endl;
+	for(int i = 0; i < 10000; ++i){
+		//cout << i << endl;
+			mySession.updateObjects();
 	}
 
     return 0;
@@ -26,7 +31,7 @@ int main(int argc, const char **argv) {
 
 /*int main(int argc, char *argv[])
 {
-    
+
     // Initialize SDL and open a window
     GLuint screenWidth = 800, screenHeight = 600;
     SDLWindowManager windowManager(screenWidth, screenHeight, "iSeason");
@@ -63,5 +68,3 @@ int main(int argc, const char **argv) {
 
     return 0;
 }*/
-
-
