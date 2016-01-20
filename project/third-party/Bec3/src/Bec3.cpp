@@ -22,7 +22,7 @@ Bec3::~Bec3(){
 void Bec3::connect(string username, string password){
 	RestClient::response connect = RestClient::post("http://localhost:9000/login", "text/json", "{\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"service\":\"im.bec3.com\",\"resource\":\"REST\"}");
 	httpError(connect.code);
-	cout << "\033[32m[connected]\033[30m" << endl;
+	cout << "\033[32m[connected]\033[00m" << endl;
 	//Rajouter la session
 }
 
