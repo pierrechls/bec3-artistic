@@ -1,0 +1,17 @@
+{
+  "user": {
+    "name"  : "Corentin",
+    "login" : "corentin.limoge",
+    "mdp"   : "coucou" 
+  },
+  "objects" : [
+    {
+      "id"  : "TestLight",
+      "type": "light"
+    },
+    {
+      "id"  : "MSG",
+      "type": "msg-sender"
+    }
+  ]
+}
