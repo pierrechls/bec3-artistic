@@ -1,0 +1,25 @@
+newmtl phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd ailes.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 42.23
+newmtl phongE1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd parabole.jpg
+Ni 1.00
+Ks 0.77 0.77 0.77
+newmtl phongE2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd corps.jpg
+Ni 1.00
+Ks 1.00 1.00 1.00
