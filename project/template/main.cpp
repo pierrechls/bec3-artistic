@@ -1,14 +1,30 @@
 #include <glimac/SDLWindowManager.hpp>
 #include <GL/glew.h>
 #include <iostream>
-
+#include <string>
 #include "Engine.hpp"
+#include "debug.hpp"
 
 using namespace std;
 using namespace glimac;
 
+#include <Bec3/Bec3.hpp>
 
-int main(int argc, char *argv[])
+int main(int argc, const char **argv) {	
+	Bec3 mySession = Bec3(string("corentin.limoge"), string("coucou"));
+	mySession.addObject("TestLight", "light");
+	mySession.addObject("MSG", "msg-sender");
+	
+	//Test d'affichage des objects sur la platerforme Bec3
+	for(int i = 0; i < 1000000; ++i){
+		cout << i << endl;
+	}
+
+    return 0;
+}
+
+
+/*int main(int argc, char *argv[])
 {
     
     // Initialize SDL and open a window
@@ -19,7 +35,7 @@ int main(int argc, char *argv[])
     glewExperimental = GL_TRUE;
     GLenum glewInitError = glewInit();
     if(GLEW_OK != glewInitError) {
-        std::cerr << glewGetErrorString(glewInitError) << std::endl;
+        std::cerr << glewGetErrorstring(glewInitError) << std::endl;
         return EXIT_FAILURE;
     }
 
@@ -29,8 +45,8 @@ int main(int argc, char *argv[])
     // Setup some OpenGL options
     glEnable(GL_DEPTH_TEST);
 
-    std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
-    std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl << std::endl;
+    std::cout << "OpenGL Version : " << glGetstring(GL_VERSION) << std::endl;
+    std::cout << "GLEW Version : " << glewGetstring(GLEW_VERSION) << std::endl << std::endl;
 
 
     Engine Artistic;
@@ -46,6 +62,6 @@ int main(int argc, char *argv[])
     Artistic.stop();
 
     return 0;
-}
+}*/
 
 
