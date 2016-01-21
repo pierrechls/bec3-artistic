@@ -4,9 +4,7 @@
 #include <map>
 #include <string>
 #include <memory>
-
-class VirtualObject;
-struct State;
+#include "Bec3/VirtualObject.hpp"
 
 class Bec3 {
 	private :
@@ -18,9 +16,8 @@ class Bec3 {
 		Bec3(std::string username, std::string password);
 		~Bec3();
 		void updateObjects();
-		State &getObjectState(std::string id);
+		std::shared_ptr<VirtualObject> &object(std::string id);
 		void addObject(std::string id, std::string type);
 };
 
 #endif
-

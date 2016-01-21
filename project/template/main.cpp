@@ -2,28 +2,40 @@
 #include <GL/glew.h>
 #include <iostream>
 #include <string>
+#include <Bec3/Bec3.hpp>
+
 #include "Engine.hpp"
 #include "debug.hpp"
 
 using namespace std;
 using namespace glimac;
 
-#include <Bec3/Bec3.hpp>
-
 int main(int argc, const char **argv) {
+	State state;
 	Bec3 mySession = Bec3(string("corentin.limoge"), string("coucou"));
+	cout << "Coucoutest" << endl;
 	mySession.addObject("TestLight", "light");
-	mySession.addObject("MSG", "msg-sender");
-
-
-
-
+	cout << "Testlight créée" << endl;
+	mySession.addObject("MSG", "msg-receiver");
+	cout << "Objets créés" << endl;
 
 	//Test d'affichage des objects sur la platerforme Bec3
-	for(int i = 0; i < 10000; ++i){
+	for(int i = 0; i < 100; ++i){
 		//cout << i << endl;
-			mySession.updateObjects();
+		mySession.updateObjects();
 	}
+	
+	//cout << "TestLight: " << mySession.object(string("TestLight"))->value << endl;
+	//cout << "MSG: " << mySession.object(string("MSG"))->value << endl;
+	
+	/*shared_ptr<State> coucou = mySession.getObjectState(string("TestLight"));
+	cout << "Coucou " << coucou->value << endl;
+	
+	cout << "State " << mySession.getObjectState(string("TestLight"))->value << endl;
+	while(0){
+		mySession.updateObjects();
+		cout << "Coucou" << mySession.getObjectState(string("TestLight"))->value << endl;
+	}*/
 
     return 0;
 }

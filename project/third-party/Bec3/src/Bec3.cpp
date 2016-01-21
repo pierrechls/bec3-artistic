@@ -1,5 +1,4 @@
 #include "Bec3/Bec3.hpp"
-#include "Bec3/VirtualObject.hpp"
 #include <restclient-cpp/restclient.h>
 #include "Bec3/HTTPError.hpp"
 
@@ -38,10 +37,23 @@ void Bec3::updateObjects(){
 }
 
 void Bec3::addObject(string id, string type){
-	std::shared_ptr<VirtualObject> myObject(new VirtualObject(id, type));
-	Objects.insert(std::pair<string,std::shared_ptr<VirtualObject>>(id, myObject));
+	if(type == "gauge" || type == "slider" || type == "light" || type == "msg-receiver"){
+		cout << "Objets à insérer" << endl;
+		std::shared_ptr<VirtualObject> myObject(new VirtualObject(id, type));
+		cout << "Pointeur créé" << endl;
+		Objects.insert(std::pair<string,std::shared_ptr<VirtualObject>>(id, myObject));
+		cout << "Objets inséré" << endl;
+	}
+	else
+		httpError(418);
 }
 
-State &Bec3::getObjectState(string id){
-	return Objects.find(id)->second->getState();
+shared_ptr<VirtualObject> &Bec3::object(string id){
+	//cout << "Type returned : " << typeid(Objects.find(id)->second).name() << endl;
+	//cout << "Type of value : " << typeid(Objects.find(id)->second->value).name() << endl;
+	//cout << "Object valu " << Objects.find(id)->second->value << endl;
+	
+	//std::shared_ptr<State> myPtr(new State(Objects.find(id)->second->getState()));
+	//return Objects.find(id)->second->getState();
+	return Objects.find(id)->second;
 }

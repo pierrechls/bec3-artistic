@@ -1,28 +1,12 @@
 #ifndef VIRTUALOBJECT_HPP
 #define VIRTUALOBJECT_HPP
 
-#include <string>
-
-struct State {
-	std::string id;
-};
-
-struct StateInt:public State{
-	int value;
-};
-
-struct StateBool:public State{
-	bool value;
-};
-
-struct StateString:public State{
-	std::string value;
-};
+#include "Bec3/State.hpp"
 
 class VirtualObject {
 	private :
 		std::string id;
-		StateString state;
+		State state;
 
 	public :
 		VirtualObject(std::string id, std::string type);
