@@ -13,7 +13,7 @@ void httpError(int code){
 				break;   
 			case 404:
 				throw "\033[31m[This object doesn't exist]\033[00m\n";
-				break;  
+				break;
 		}
 	} 
 	catch ( const char * Msg ) 

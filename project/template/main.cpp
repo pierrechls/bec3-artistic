@@ -18,7 +18,10 @@ int main(int argc, const char **argv) {
     ifstream conf(path);
 
     if (!conf.is_open())
-        throw std::runtime_error("couldnt load file");
+    {
+        cout << "\033[31m[ERROR]\033[00m Could'nt load configuration file." << endl;
+        exit(EXIT_FAILURE);
+    }
 
     stringstream buffer;
     buffer << conf.rdbuf();
