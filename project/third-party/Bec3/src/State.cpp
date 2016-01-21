@@ -5,6 +5,7 @@
 #include <restclient-cpp/restclient.h>
 
 using namespace rapidjson;
+using namespace std;
 
 RestClient::headermap headers;
 
@@ -20,11 +21,14 @@ void State::update(std::string id){
 		httpError(object.code);
 		Document document; //creation de document pour parseur
 		document.Parse(object.body.c_str());
-		
 		id = document["state"]["id"].GetInt();
-		stringValue = document["state"]["value"].GetString();
-		intValue = document["state"]["value"].GetInt();
-		boolValue = document["state"]["value"].GetBool();
+		
+		if( document["state"]["value"].IsString() )
+			stringValue = document["state"]["value"].GetString();
+		else if( document["state"]["value"].IsInt() )
+			intValue = document["state"]["value"].GetInt();
+		else if( document["state"]["value"].IsBool() )
+			boolValue = document["state"]["value"].GetBool();
 	}
 }
 

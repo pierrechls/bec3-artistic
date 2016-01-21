@@ -14,10 +14,8 @@ using namespace std;
 //--------Constructeur et destructeur VirtualObject
 VirtualObject::VirtualObject(string id, string type) : id(id){
 	RestClient::response object = RestClient::post("http://localhost:9000/feature", "application/json", "{\"id\":\""+ id + "\",\"type\":\"" + type + "\"}", headers, 10);
-	cout << object.code << endl;
-	State newState(id);
-	state = newState;
 	httpError(object.code);
+	state = State(id);
 }
 
 VirtualObject::~VirtualObject(){
