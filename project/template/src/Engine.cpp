@@ -3,14 +3,17 @@
 using namespace std;
 using namespace glimac;
 
-Engine::Engine(){}
+Engine::Engine(){
+  mySession.initFromFile("assets/conf/Bec3.json");
+  stateLightA = stateLightB = stateLightC = stateLightD = stateLightE = false;
+}
 
 void Engine::run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done)
 {
-  
   ///////////////////
   /*   SDL EVENTS  */
   ///////////////////
+  mySession.updateObjects();
   
   Event(windowManager, screenWidth, screenHeight, done);  
 
@@ -42,7 +45,7 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
   while(windowManager->pollEvent(e))
   {
     if(e.type == SDL_QUIT) {
-      (*done) = true; // Leave the loop after this iteration
+      (*done) =  true; // Leave the loop after this iteration
     }
     switch( e.type )
     {
@@ -51,58 +54,53 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
         //QUIT
         if(windowManager->isKeyPressed(SDLK_ESCAPE))
         {
-          (*done) = true;
+          (*done) =  true;
         }
 
-        //GROUP A
-        if(windowManager->isKeyPressed(SDLK_a))
-        {
-          _Sound.Event("a");
-          _Graphics.Event("a");
-        }
-
-        //GROUP B
-        if(windowManager->isKeyPressed(SDLK_b))
-        {
-          _Sound.Event("b");
-          _Graphics.Event("b");
-        }
-
-        //GROUP C
-        if(windowManager->isKeyPressed(SDLK_c))
-        {
-          _Sound.Event("c");
-          _Graphics.Event("c");
-        }
-
-        //GROUP E
-        if(windowManager->isKeyPressed(SDLK_d))
-        {
-          _Sound.Event("d");
-          _Graphics.Event("d");
-        }
-
-        //GROUP E
-        if(windowManager->isKeyPressed(SDLK_e))
-        {
-          _Sound.Event("e");
-          _Graphics.Event("e");
-        }
-
-        //ACTIVE OR NOT FLANGER EFFECT
-        if(windowManager->isKeyPressed(SDLK_f))
-        {
-          _Sound.Event("f");
-        }
-
-        //ACTIVE OR NOT LOWPASS EFFECT
-        if(windowManager->isKeyPressed(SDLK_l))
-        {
-          _Sound.Event("l");
-        }
       break;
     }
   }
+
+  //GROUP A
+  if( mySession.getObjectState( "LightA" ).getBool() != stateLightA )
+  {
+    stateLightA = !stateLightA;
+    _Sound.Event("GroupA");
+    _Graphics.Event("GroupA");
+  }
+
+  //GROUP B
+  if( mySession.getObjectState( "LightB" ).getBool() != stateLightB )
+  {
+    stateLightB = !stateLightB;
+    _Sound.Event("GroupB");
+    _Graphics.Event("GroupB");
+  }
+
+  //GROUP C
+  if( mySession.getObjectState( "LightC" ).getBool() != stateLightC )
+  {
+    stateLightC = !stateLightC;
+    _Sound.Event("GroupC");
+    _Graphics.Event("GroupC");
+  }
+
+  //GROUP D
+  if( mySession.getObjectState( "LightD" ).getBool() != stateLightD )
+  {
+    stateLightD = !stateLightD;
+    _Sound.Event("GroupD");
+    _Graphics.Event("GroupD");
+  }
+
+  //GROUP E
+  if( mySession.getObjectState( "LightE" ).getBool() != stateLightE )
+  {
+    stateLightE = !stateLightE;
+    _Sound.Event("GroupE");
+    _Graphics.Event("GroupE");
+  }
+
 }
 
 void Engine::stop()

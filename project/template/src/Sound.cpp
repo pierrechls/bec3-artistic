@@ -211,35 +211,35 @@ void Sound::Event(string touch)
   /*     MUTE GROUPE     */
   /////////////////////////
 
-  if( touch == "a" )
+  if( touch == "GroupA" )
   {
     static bool mute = false;
     groupA->setMute(mute);
     mute = !mute;
   }
   
-  if( touch == "b" )
+  if( touch == "GroupB" )
   {
     static bool mute = false;
     groupB->setMute(mute);
     mute = !mute;
   }
 
-  if( touch == "c" )
+  if( touch == "GroupC" )
   {
     static bool mute = false;
     groupC->setMute(mute);
     mute = !mute;
   }
 
-  if( touch == "d" )
+  if( touch == "GroupD" )
   {
     static bool mute = false;
     groupD->setMute(mute);
     mute = !mute;
   }
 
-  if( touch == "e" )
+  if( touch == "GroupE" )
   {
     static bool mute = false;
     groupE->setMute(mute);
@@ -250,7 +250,7 @@ void Sound::Event(string touch)
   /*    EFFECTS GROUPE   */
   /////////////////////////
 
-  if( touch == "f")
+  if( touch == "Flanger")
   {
     static bool flange = true;
     if (flange)
@@ -265,7 +265,7 @@ void Sound::Event(string touch)
     flange = !flange;
   }
 
-  if( touch == "l")
+  if( touch == "Lowpass")
   {
     static bool lowpass = true;
     if (lowpass)

@@ -12,12 +12,18 @@ extern RestClient::headermap headers;
 using namespace std;
 using namespace rapidjson;
 
+Bec3::Bec3(){}
+
+Bec3::Bec3(string path){
+    initFromFile(path);
+}
+
 Bec3::Bec3(string username, string password){
 	connect(username, password);
 	timer = std::clock();
 }
 
-Bec3::Bec3(string path){
+void Bec3::initFromFile(string path){
 
     ifstream conf(path);
 
@@ -71,6 +77,7 @@ void Bec3::disconnect(){
 	RestClient::response disconnect = RestClient::del("http://localhost:9000/login", headers, 1);
 	httpError(disconnect.code);
 	headers["Cookie"] = "";
+    cout << "Bye! You are \033[31m[disconnected]\033[00m See you soon!\n";
 }
 
 void Bec3::updateObjects(){
@@ -95,8 +102,7 @@ State &Bec3::getObjectState(std::string id){
 }
 
 bool Bec3::requestTime(){
-    if( (clock() - (float)timer)/CLOCKS_PER_SEC > 0.05){
-    	cout << "coucou" << endl;
+    if( (clock() - (float)timer)/CLOCKS_PER_SEC > 0.01){
     	timer = clock();
     	return true;
     }

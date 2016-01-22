@@ -5,15 +5,23 @@
   },
   "objects" : [
     {
-      "id"   : "TestLight",
+      "id"   : "LightA",
       "type" : "light"
     },
     {
-      "id"   : "MSG",
-      "type" : "msg-receiver"
+      "id"   : "LightB",
+      "type" : "light"
     },
     {
-      "id"   : "Cherrier",
+      "id"   : "LightC",
+      "type" : "light"
+    },
+    {
+      "id"   : "LightD",
+      "type" : "light"
+    },
+    {
+      "id"   : "LightE",
       "type" : "light"
     }
   ]

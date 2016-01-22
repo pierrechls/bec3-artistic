@@ -16,9 +16,11 @@ class Bec3 {
 		bool requestTime();
 
 	public :
-		Bec3(std::string username, std::string password);
+		Bec3();
 		Bec3(std::string path);
+		Bec3(std::string username, std::string password);
 		~Bec3();
+		void initFromFile(std::string path);
 		void updateObjects();
 		State &getObjectState(std::string id);
 		void addObject(std::string id, std::string type);

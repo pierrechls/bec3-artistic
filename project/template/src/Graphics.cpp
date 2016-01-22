@@ -82,9 +82,9 @@ void Graphics::Event(string touch)
   /*   DISPLAY GROUPE    */
   /////////////////////////
 
-  if( touch == "a" ) groupA = !groupA;
-  if( touch == "b" ) groupB = !groupB;
-  if( touch == "c" ) groupC = !groupC;
-  if( touch == "d" ) groupD = !groupD;
-  if( touch == "e" ) groupE = !groupE;
+  if( touch == "GroupA" ) groupA = !groupA;
+  if( touch == "GroupB" ) groupB = !groupB;
+  if( touch == "GroupC" ) groupC = !groupC;
+  if( touch == "GroupD" ) groupD = !groupD;
+  if( touch == "GroupE" ) groupE = !groupE;
 }

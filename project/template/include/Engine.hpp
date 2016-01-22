@@ -11,6 +11,8 @@
 #include <iostream>
 #include <cstdio>
 
+#include <Bec3/Bec3.hpp>
+
 #include "Graphics.hpp"
 #include "Sound.hpp"
 
@@ -28,10 +30,13 @@ class Engine
       void stop();
       
     private:
+      Bec3 mySession;
+
+      bool stateLightA, stateLightB, stateLightC, stateLightD, stateLightE;
+
       Sound     _Sound;
       Graphics  _Graphics;
       float frequencies [ NOMBRE_CHANNEL ];
-
       void Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
 
 };
