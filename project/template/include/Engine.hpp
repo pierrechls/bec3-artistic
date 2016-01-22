@@ -11,40 +11,28 @@
 #include <iostream>
 #include <cstdio>
 
-#include "wincompat.h"
-#include <fmodex/fmod.hpp>
-#include <fmodex/fmod_dsp.h>
-#include <fmodex/fmod_errors.h>
+#include "Graphics.hpp"
+#include "Sound.hpp"
 
-//#include "Shader.hpp"
-//#include "Sound.hpp"
+#define NOMBRE_CHANNEL 6
 
 using namespace std;
 using namespace glimac;
-
 
 class Engine
 {
     public:
 
-      FMOD::System     *system;
-      FMOD::Sound      *sound;
-      FMOD::Channel    *channel;
-      FMOD::DSP        *dsplowpass;
-      FMOD::DSP        *dsphighpass;
-      FMOD::DSP        *dspecho;
-      FMOD::DSP        *dspflange;
-      FMOD::DSP        *dspdistortion;
-      FMOD::DSP        *dspchorus;
-      FMOD::DSP        *dspparameq;
-      FMOD_RESULT       result;
-      unsigned int      version;
-
       Engine();
       void run(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
       void stop();
-      void ERRCHECK(FMOD_RESULT result);
+      
     private:
+      Sound     _Sound;
+      Graphics  _Graphics;
+      float frequencies [ NOMBRE_CHANNEL ];
+
+      void Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint screenHeight, bool* done);
 
 };
 
