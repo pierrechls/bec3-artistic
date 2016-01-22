@@ -14,6 +14,7 @@ class Bec3 {
 
 	public :
 		Bec3(std::string username, std::string password);
+		Bec3(std::string path);
 		~Bec3();
 		void updateObjects();
 		State &getObjectState(std::string id);

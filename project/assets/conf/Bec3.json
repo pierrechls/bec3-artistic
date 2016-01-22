@@ -1,0 +1,20 @@
+{
+  "user": {
+    "login"    : "corentin.limoge",
+    "password" : "coucou" 
+  },
+  "objects" : [
+    {
+      "id"   : "TestLight",
+      "type" : "light"
+    },
+    {
+      "id"   : "MSG",
+      "type" : "msg-receiver"
+    },
+    {
+      "id"   : "Cherrier",
+      "type" : "light"
+    }
+  ]
+}

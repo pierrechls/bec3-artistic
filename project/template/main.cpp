@@ -11,11 +11,8 @@ using namespace std;
 using namespace glimac;
 
 int main(int argc, const char **argv) {
-	State state;
-	Bec3 mySession = Bec3( "corentin.limoge" , "coucou" );
 
-	mySession.addObject("TestLight", "light");
-	mySession.addObject("MSG", "msg-receiver");
+	Bec3 mySession = Bec3( "assets/conf/Bec3.json" );
 
 	//Test d'affichage des objects sur la platerforme Bec3
 	for(int i = 0; i < 100; ++i){

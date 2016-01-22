@@ -1,15 +1,52 @@
 #include "Bec3/Bec3.hpp"
 #include <restclient-cpp/restclient.h>
 #include "Bec3/HTTPError.hpp"
+#include "rapidjson/document.h"
+
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 extern RestClient::headermap headers;
 
 using namespace std;
-
-using std::string;
+using namespace rapidjson;
 
 Bec3::Bec3(string username, string password){
 	connect(username, password);
+}
+
+Bec3::Bec3(string path){
+
+    ifstream conf(path);
+
+    if (!conf.is_open())
+    {
+        cout << "\033[31m[ERROR]\033[00m Could'nt load configuration file." << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    stringstream buffer;
+    buffer << conf.rdbuf();
+
+    Document document;
+    document.Parse(buffer.str().c_str());
+
+    const Value &user    = document["user"];
+    const Value &objects = document["objects"];
+
+    //LOG TO BEC3 WITH USER CONFIGURATION
+    const Value &user_login      = user["login"];
+    const Value &user_password   = user["password"];
+
+    connect(user_login.GetString(), user_password.GetString() );
+
+    //ADD ALL OBJECTS
+    for (SizeType i = 0; i < objects.Size(); ++i) {
+        const Value &id   = objects[i]["id"];
+        const Value &type = objects[i]["type"];
+        addObject( id.GetString() , type.GetString() );
+    }
 }
 
 Bec3::~Bec3(){
