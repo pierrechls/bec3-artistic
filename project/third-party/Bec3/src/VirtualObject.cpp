@@ -11,7 +11,6 @@ extern RestClient::headermap headers;
 
 using namespace std;
 
-//--------Constructeur et destructeur VirtualObject
 VirtualObject::VirtualObject(string id, string type) : id(id){
 	RestClient::response object = RestClient::post("http://localhost:9000/feature", "application/json", "{\"id\":\""+ id + "\",\"type\":\"" + type + "\"}", headers, 10);
 	httpError(object.code);
@@ -20,7 +19,7 @@ VirtualObject::VirtualObject(string id, string type) : id(id){
 
 VirtualObject::~VirtualObject(){
 	RestClient::response object = RestClient::del("http://localhost:9000/feature/" + id, headers, 1);
-	cout << "\033[31m[Destruction de :]\033[39m " << id << endl;
+	cout << "\033[31m[" + id + " destroyed]\033[39m " << endl;
 	httpError(object.code);
 }
 

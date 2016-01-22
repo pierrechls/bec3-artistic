@@ -16,7 +16,7 @@ class Bec3 {
 		Bec3(std::string username, std::string password);
 		~Bec3();
 		void updateObjects();
-		std::shared_ptr<VirtualObject> &object(std::string id);
+		State &getObjectState(std::string id);
 		void addObject(std::string id, std::string type);
 };
 

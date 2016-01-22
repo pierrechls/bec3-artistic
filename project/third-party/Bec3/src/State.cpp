@@ -12,6 +12,11 @@ RestClient::headermap headers;
 State::State(){};
 
 State::State(std::string id){
+
+	stringValue = "";
+	boolValue   = false;
+	intValue    = 0;
+
 	update(id);
 }
 
@@ -23,12 +28,27 @@ void State::update(std::string id){
 		document.Parse(object.body.c_str());
 		id = document["state"]["id"].GetInt();
 		
-		if( document["state"]["value"].IsString() )
+		if( document["state"]["value"].IsString() ){
 			stringValue = document["state"]["value"].GetString();
-		else if( document["state"]["value"].IsInt() )
-			intValue = document["state"]["value"].GetInt();
-		else if( document["state"]["value"].IsBool() )
-			boolValue = document["state"]["value"].GetBool();
+			if(stringValue != ""){
+				intValue  = 1;
+				boolValue = true;
+			}
+			else{
+				intValue  = 0;
+				boolValue = false;
+			}
+		}
+		else if( document["state"]["value"].IsInt() ){
+			intValue    = document["state"]["value"].GetInt();
+			stringValue = to_string(intValue);
+			boolValue   = (bool)intValue;
+		}
+		else if( document["state"]["value"].IsBool() ){
+			boolValue   = document["state"]["value"].GetBool();
+			intValue    = (int)boolValue;
+			stringValue = to_string(boolValue);
+		}
 	}
 }
 
