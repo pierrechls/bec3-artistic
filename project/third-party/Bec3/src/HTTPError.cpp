@@ -14,6 +14,9 @@ void httpError(int code){
 			case 404:
 				throw "\033[31m[This object doesn't exist]\033[00m\n";
 				break;
+			case 418:
+				throw std::runtime_error("\033[31m[This type doesn't exist (IATP)]\033[00m\n");
+				break;
 		}
 	} 
 	catch ( const char * Msg ) 
