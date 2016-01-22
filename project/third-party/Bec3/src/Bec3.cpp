@@ -14,6 +14,7 @@ using namespace rapidjson;
 
 Bec3::Bec3(string username, string password){
 	connect(username, password);
+	timer = std::clock();
 }
 
 Bec3::Bec3(string path){
@@ -38,7 +39,6 @@ Bec3::Bec3(string path){
     //LOG TO BEC3 WITH USER CONFIGURATION
     const Value &user_login      = user["login"];
     const Value &user_password   = user["password"];
-
     connect(user_login.GetString(), user_password.GetString() );
 
     //ADD ALL OBJECTS
@@ -47,6 +47,8 @@ Bec3::Bec3(string path){
         const Value &type = objects[i]["type"];
         addObject( id.GetString() , type.GetString() );
     }
+
+    timer = std::clock();
 }
 
 Bec3::~Bec3(){
@@ -72,8 +74,10 @@ void Bec3::disconnect(){
 }
 
 void Bec3::updateObjects(){
-	for(auto it=Objects.begin(); it!=Objects.end(); ++it)
-		it->second->updateState();
+	if( requestTime() ){
+		for(auto it=Objects.begin(); it!=Objects.end(); ++it)
+			it->second->updateState();
+	}
 }
 
 void Bec3::addObject(string id, string type){
@@ -88,4 +92,13 @@ void Bec3::addObject(string id, string type){
 
 State &Bec3::getObjectState(std::string id){
 	return Objects.find(id)->second->getState();
+}
+
+bool Bec3::requestTime(){
+    if( (clock() - (float)timer)/CLOCKS_PER_SEC > 0.05){
+    	cout << "coucou" << endl;
+    	timer = clock();
+    	return true;
+    }
+    else return false;
 }
