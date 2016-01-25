@@ -2,7 +2,6 @@
 #include <GL/glew.h>
 #include <iostream>
 #include <string>
-#include <Bec3/Bec3.hpp>
 
 #include "Engine.hpp"
 

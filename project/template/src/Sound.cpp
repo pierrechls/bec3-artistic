@@ -76,20 +76,6 @@ Sound::Sound()
   result = masterGroup->addGroup(groupD); ERRCHECK(result);
   result = masterGroup->addGroup(groupE); ERRCHECK(result);
   
-  cout << "ˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉ" << endl;
-  cout << "Press 'A' to mute/unmute group  A" << endl;
-  cout << "Press 'B' to mute/unmute group  B" << endl;
-  cout << "Press 'C' to mute/unmute group  C" << endl;
-  cout << "Press 'D' to mute/unmute group  D" << endl;
-  cout << "Press 'E' to mute/unmute group  E" << endl;
-  cout << "                                 " << endl;
-  cout << "Press 'F' to flange  master group" << endl;
-  cout << "Press 'L' to lowpass master group" << endl;
-  cout << "Press 'Esc' to quit  installation" << endl;
-  cout << "                                 " << endl;
-  cout << "ˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉ" << endl;
-
-  
   ///////////////////////////////
   /*       START SOUNDS        */
   ///////////////////////////////

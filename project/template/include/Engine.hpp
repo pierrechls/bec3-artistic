@@ -11,7 +11,7 @@
 #include <iostream>
 #include <cstdio>
 
-#include <Bec3/Bec3.hpp>
+#include <Bec3-lib/Bec3.hpp>
 
 #include "Graphics.hpp"
 #include "Sound.hpp"

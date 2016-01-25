@@ -42,8 +42,7 @@ void Camera::changePosition( glm::vec3 position){
 }
 
 glm::mat4 Camera::getViewMatrix() const{
-	//Point
-	glm::vec3 Point = m_Position + m_FrontVector;
+	//glm::vec3 Point = m_Position + m_FrontVector;
 	glm::mat4 MV = glm::lookAt(m_Position, m_Position + m_FrontVector, m_UpVector);
 	return MV;
 }
