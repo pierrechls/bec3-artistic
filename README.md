@@ -1,6 +1,6 @@
-# Bec3 - Artistic Installation
+# Artistic Installation
 
-Project realised in IMAC Engineering School, using the [Bec3 library](https://github.com/PierreChls/Bec3-lib), a C++ library created by [Pierre Charles](https://github.com/PierreChls), [Jérome Hernandez](https://github.com/Chouche), [Corentin Limoge](https://github.com/climoge) and Valentin Murot
+Project realised in IMAC Engineering School, using the [Bec3 library](https://github.com/PierreChls/Bec3-lib), a C++ library created by [Pierre Charles](https://github.com/PierreChls), [Jérome Hernandez](https://github.com/Chouche), [Corentin Limoge](https://github.com/climoge) and Valentin Mourot
 
 **Supported OS :**
 
