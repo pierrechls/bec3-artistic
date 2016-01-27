@@ -1,4 +1,5 @@
 #include "Engine.hpp"
+#include <glimac/Program.hpp>
 
 using namespace std;
 using namespace glimac;
@@ -47,6 +48,7 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
     if(e.type == SDL_QUIT) {
       (*done) =  true; // Leave the loop after this iteration
     }
+
     switch( e.type )
     {
       case SDL_KEYDOWN:
