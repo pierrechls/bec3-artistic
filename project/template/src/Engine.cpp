@@ -64,7 +64,7 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
   }
 
   //GROUP A
-  if( mySession.getObjectState( "LightA" ).getBool() != stateLightA )
+  if( mySession.getObjectState( "Texture" ).getBool() != stateLightA )
   {
     stateLightA = !stateLightA;
     _Sound.Event("GroupA");
@@ -72,7 +72,7 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
   }
 
   //GROUP B
-  if( mySession.getObjectState( "LightB" ).getBool() != stateLightB )
+  if( mySession.getObjectState( "Cercles" ).getBool() != stateLightB )
   {
     stateLightB = !stateLightB;
     _Sound.Event("GroupB");
@@ -80,7 +80,7 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
   }
 
   //GROUP C
-  if( mySession.getObjectState( "LightC" ).getBool() != stateLightC )
+  if( mySession.getObjectState( "Musique" ).getBool() != stateLightC )
   {
     stateLightC = !stateLightC;
     _Sound.Event("GroupC");
@@ -88,7 +88,7 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
   }
 
   //GROUP D
-  if( mySession.getObjectState( "LightD" ).getBool() != stateLightD )
+  if( mySession.getObjectState( "Etoiles" ).getBool() != stateLightD )
   {
     stateLightD = !stateLightD;
     _Sound.Event("GroupD");
@@ -96,7 +96,7 @@ void Engine::Event(SDLWindowManager* windowManager, GLuint screenWidth, GLuint s
   }
 
   //GROUP E
-  if( mySession.getObjectState( "LightE" ).getBool() != stateLightE )
+  if( mySession.getObjectState( "Satelite" ).getBool() != stateLightE )
   {
     stateLightE = !stateLightE;
     _Sound.Event("GroupE");

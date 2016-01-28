@@ -5,23 +5,23 @@
   },
   "objects" : [
     {
-      "id"   : "LightA",
+      "id"   : "Texture",
       "type" : "light"
     },
     {
-      "id"   : "LightB",
+      "id"   : "Cercles",
       "type" : "light"
     },
     {
-      "id"   : "LightC",
+      "id"   : "Musique",
       "type" : "light"
     },
     {
-      "id"   : "LightD",
+      "id"   : "Etoiles",
       "type" : "light"
     },
     {
-      "id"   : "LightE",
+      "id"   : "Satelite",
       "type" : "light"
     }
   ]
