@@ -2,11 +2,9 @@ cmake_minimum_required(VERSION 2.8)
 
 project(BeC3)
 
-add_definitions(-std=c++11)
-
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wno-reorder -g")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -O2 -Wno-reorder -g")
 
 set(CMAKE_PREFIX_PATH /etc/lib)
 
