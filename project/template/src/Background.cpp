@@ -1,6 +1,8 @@
 #include "Background.hpp"
-#include <iostream>
-#include <string>
+
+using namespace std;
+using namespace glimac;
+using namespace glm;
 
 Background::Background(){
 

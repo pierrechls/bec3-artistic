@@ -12,17 +12,17 @@ class Model
 {
     public:
         Model();
-        Model(string path);
+        Model(std::string path);
         void Draw(Shader shader);
-        vector<Mesh> meshes;
-        vector<Texture> textures_loaded;
+        std::vector<Mesh> meshes;
+        std::vector<Texture> textures_loaded;
 
     private:
         
-        string directory;
-        void loadModel(string path);
+        std::string directory;
+        void loadModel(std::string path);
         void processNode(aiNode* node, const aiScene* scene);
         Mesh processMesh(aiMesh* mesh, const aiScene* scene);
-        GLint TextureFromFile(const char* path, string directory);
-        vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName);
+        GLint TextureFromFile(const char* path, std::string directory);
+        std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
 };

@@ -1,23 +1,9 @@
 #pragma once
-#include <glimac/SDLWindowManager.hpp>
-#include <glimac/Image.hpp>
-#include <glimac/FilePath.hpp>
-
-#include <GL/glew.h>
-#include <vector>
-#include <map>
-#include <string>
-#include <fstream>
-#include <iostream>
-#include <cstdio>
 
 #include "wincompat.h"
 #include <fmodex/fmod.hpp>
 #include <fmodex/fmod_dsp.h>
 #include <fmodex/fmod_errors.h>
-
-using namespace std;
-using namespace glimac;
 
 #define TAILLE_SPECTRE 512
 #define NOMBRE_SOUND   6

@@ -1,6 +1,4 @@
 #include "Square.hpp"
-#include <iostream>
-#include <string>
 
 Square::Square(){
 

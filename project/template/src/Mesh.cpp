@@ -1,4 +1,6 @@
 #include "Mesh.hpp"
+#include <sstream>
+using namespace std;
 
 Mesh::Mesh(vector<Vertex> vertices, vector<GLuint> indices, vector<Texture> textures)
 {

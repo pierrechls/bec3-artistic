@@ -1,4 +1,7 @@
 #include "Shader.hpp"
+#include <sstream>
+#include <string>
+#include <fstream>
 
 using namespace std;
 

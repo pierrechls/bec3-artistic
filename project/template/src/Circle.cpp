@@ -1,6 +1,8 @@
 #include "Circle.hpp"
-#include <iostream>
-#include <string>
+
+using namespace std;
+using namespace glimac;
+using namespace glm;
 
 Circle::Circle(){
 

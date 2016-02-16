@@ -1,6 +1,8 @@
 #include "Graphics.hpp"
-#include <iostream>
-#include <string>
+
+using namespace std;
+using namespace glimac;
+using namespace glm;
 
 Graphics::Graphics()
 {

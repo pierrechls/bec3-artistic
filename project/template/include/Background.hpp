@@ -1,18 +1,8 @@
 #pragma once
-#include "glimac/glm.hpp"
-#include <glimac/SDLWindowManager.hpp>
-#include <glimac/FilePath.hpp>
 #include <glimac/Image.hpp>
 #include <string>
-#include <fstream>
 #include <map>
-#include <iostream>
-#include <GL/glew.h>
 #include "Shader.hpp"
-
-using namespace std;
-using namespace glimac;
-using namespace glm;
 
 class Background{
 
@@ -24,8 +14,8 @@ public:
 	void draw(float frequence, float multi);
 private:
 
-	std::unique_ptr<Image>              HUDtexture;
-	map<string, std::unique_ptr<Image>> HUDtextures;
+	std::unique_ptr <glimac::Image>                        HUDtexture;
+	std::map <std::string, std::unique_ptr<glimac::Image>> HUDtextures;
 
 	GLuint  VBO, VAO, EBO;
 	GLuint  TextureBlack;
