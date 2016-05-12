@@ -18,7 +18,45 @@ Windows :
 
 #### Open a new terminal window and clone the project
 
-	git clone https://github.com/PierreChls/Bec3Artistic.git
+	git clone https://github.com/PierreChls/BeC3-artistic.git
+	
+####Create a JSON configuration file
+
+```
+{
+  "user": {
+    "login"    : "YOUR_LOGIN",
+    "password" : "YOUR_PASSWORD" 
+  },
+  "objects" : [
+    {
+      "id"   : "Texture",
+      "type" : "light"
+    },
+    {
+      "id"   : "Cercles",
+      "type" : "light"
+    },
+    {
+      "id"   : "Musique",
+      "type" : "light"
+    },
+    {
+      "id"   : "Etoiles",
+      "type" : "light"
+    },
+    {
+      "id"   : "Satelite",
+      "type" : "light"
+    }
+  ]
+}
+```
+
+- Copy/paste this text on your json file
+- Name this file : **Bec3.json**
+- Put it in the **project/assets/conf/** folder
+- Complete with your login and password BeC3 account
 	
 #### Build
 
