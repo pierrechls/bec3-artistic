@@ -1,12 +1,8 @@
-# Artistic Installation
+[![Version](https://img.shields.io/badge/version-1.1-green.svg)](https://img.shields.io/badge/version-1.1-green.svg) [![Build status](https://img.shields.io/badge/build-passing-green.svg)](https://img.shields.io/badge/build-passing-green.svg) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X%20%7C%20Windows-lightgrey.svg)](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X%20%7C%20Windows-lightgrey.svg)
 
-Project realised in IMAC Engineering School, using the [Bec3 library](https://github.com/PierreChls/Bec3-lib), a C++ library created by [Pierre Charles](https://github.com/PierreChls), [Jérome Hernandez](https://github.com/Chouche), [Corentin Limoge](https://github.com/climoge) and [Valentin Mourot](https://github.com/LanscelThaledric)
+# BeC3 artistic installation
 
-**Supported OS :**
-
-- Linux Ubuntu
-- Mac OSX
-
+Artistic installation realised in OpenGL, SDL, FMOD and BeC3-lib. Project realised in IMAC Engineering School, using the [Bec3 library](https://github.com/PierreChls/Bec3-lib), a C++ library created by [Pierre Charles](https://github.com/PierreChls), [Jérome Hernandez](https://github.com/Chouche) and [Corentin Limoge](https://github.com/climoge)
 
 ## How to use it
 
